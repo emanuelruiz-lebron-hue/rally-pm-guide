@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Help Center | Rally 2.0 PM Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --orange:        #FF5200;
+    --orange-light:  #FF7A33;
+    --orange-dim:    rgba(255, 82, 0, 0.08);
+    --orange-dim2:   rgba(255, 82, 0, 0.04);
+    --dark:          #1A1A1A;
+    --white:         #FFFFFF;
+    --bg:            #FAFAFA;
+    --bg2:           #F3F3F3;
+    --text:          #1A1A1A;
+    --text-secondary:#555555;
+    --text-light:    #777777;
+    --border:        rgba(0,0,0,0.08);
+    --border-strong: rgba(0,0,0,0.14);
+    --nav-height:    60px;
+    --tab-height:    48px;
+    --tip-bg:     #EFF6FF; --tip-border:  #3B82F6; --tip-text:   #1D4ED8;
+    --warn-bg:    #FFFBEB; --warn-border: #F59E0B; --warn-text:  #B45309;
+    --good-bg:    #F0FAF0; --good-border: #22C55E; --good-text:  #15803D;
+    --admin-bg:   #F5F3FF; --admin-border:#8B5CF6; --admin-text: #6D28D9;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 300;
+    line-height: 1.65;
+  }
+
+  /* ---- TOP NAV ---- */
+  .top-nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+    height: var(--nav-height);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 32px;
+    background: rgba(250,250,250,0.95);
+    backdrop-filter: blur(20px);
+    border-top: 4px solid var(--orange);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-left { display: flex; align-items: center; gap: 16px; }
+  .nav-brand { font-size: 15px; font-weight: 700; color: var(--orange); letter-spacing: -0.02em; }
+  .nav-divider { width: 1px; height: 18px; background: var(--border-strong); }
+  .nav-title { font-size: 14px; font-weight: 400; color: var(--text-secondary); }
+
+  .nav-right { display: flex; align-items: center; gap: 12px; }
+  .nav-badge {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;
+    color: var(--text-light); background: var(--bg2); border: 1px solid var(--border-strong);
+    border-radius: 6px; padding: 4px 10px;
+  }
+  .nav-btn {
+    font-size: 13px; font-weight: 500; color: var(--white); background: var(--orange);
+    border: none; border-radius: 7px; padding: 7px 16px; cursor: pointer;
+    text-decoration: none; transition: background 0.2s;
+  }
+  .nav-btn:hover { background: var(--orange-light); }
+
+  /* ---- PAGE NAV ---- */
+  .tab-bar {
+    position: fixed; top: var(--nav-height); left: 0; right: 0; z-index: 100;
+    height: var(--tab-height);
+    display: flex; align-items: stretch; justify-content: center;
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 0 32px;
+    gap: 4px;
+  }
+
+  a.tab-btn {
+    display: flex; align-items: center; gap: 7px;
+    padding: 0 16px;
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 16px; font-weight: 400;
+    color: var(--text-light);
+    background: none; border: none; border-bottom: 2px solid transparent;
+    cursor: pointer; transition: color 0.15s, border-color 0.15s;
+    margin-bottom: -1px; white-space: nowrap;
+    text-decoration: none;
+  }
+  a.tab-btn:hover { color: var(--text); }
+  a.tab-btn.active { color: var(--orange); border-bottom-color: var(--orange); font-weight: 600; }
+
+  /* ---- MAIN CONTENT ---- */
+  .main-content {
+    padding-top: calc(var(--nav-height) + var(--tab-height));
+  }
+
+  /* ---- PAGE SECTIONS ---- */
+  .page-section {
+    scroll-margin-top: calc(var(--nav-height) + var(--tab-height));
+  }
+  .page-section.section-white {
+    background: var(--white);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .panel-inner {
+    max-width: 840px;
+    margin: 0 auto;
+    padding: 56px 32px 72px;
+  }
+
+  /* ---- SECTION ---- */
+  .content-section { margin-bottom: 56px; }
+  .content-section:last-child { margin-bottom: 0; }
+  .section-anchor-label {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--text-light); margin-bottom: 10px;
+  }
+  .section-heading {
+    font-size: 26px; font-weight: 700; color: var(--text);
+    letter-spacing: -0.02em; margin-bottom: 8px;
+  }
+  .section-subheading {
+    font-size: 18px; font-weight: 300; color: var(--text-secondary);
+    line-height: 1.7; margin-bottom: 24px; max-width: 640px;
+  }
+
+  /* ---- CALLOUTS ---- */
+  .callout {
+    display: flex; gap: 12px; padding: 14px 16px;
+    border-radius: 9px; margin-top: 16px;
+    border: 1px solid;
+  }
+  .callout.tip     { background: var(--tip-bg);   border-color: var(--tip-border); }
+  .callout-icon {
+    width: 24px; height: 24px; border-radius: 6px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .callout.tip .callout-icon { background: var(--tip-border); color: white; }
+  .callout-label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 3px; }
+  .callout.tip .callout-label { color: var(--tip-text); }
+  .callout-text { font-size: 17px; font-weight: 300; line-height: 1.65; color: var(--text-secondary); }
+  .callout-text strong { font-weight: 600; color: var(--text); }
+  .callout-text a { color: var(--orange); font-weight: 500; }
+
+  /* ---- HELP CARDS ---- */
+  .help-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; margin-bottom: 40px; }
+  .help-card {
+    background: var(--bg); border: 1px solid var(--border); border-radius: 12px;
+    padding: 20px 22px; text-decoration: none;
+    transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s; display: block;
+  }
+  .help-card:hover { border-color: rgba(255,82,0,0.2); box-shadow: 0 4px 20px rgba(0,0,0,0.06); transform: translateY(-2px); }
+  .help-card-icon {
+    width: 36px; height: 36px; border-radius: 8px;
+    background: var(--orange-dim); border: 1px solid rgba(255,82,0,0.15);
+    display: flex; align-items: center; justify-content: center; color: var(--orange); margin-bottom: 14px;
+  }
+  .help-card-title { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 5px; }
+  .help-card-desc { font-size: 14px; font-weight: 300; color: var(--text-light); line-height: 1.5; }
+
+  /* ---- OFFICE HOURS ---- */
+  .oh-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 24px; }
+  .oh-card { background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 20px 22px; }
+  .oh-card-title { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+  .oh-card-meta { font-size: 14px; font-weight: 300; color: var(--text-secondary); line-height: 1.7; margin-bottom: 12px; }
+  .oh-card-meta strong { font-weight: 600; color: var(--text); }
+  .oh-link { font-size: 12px; font-weight: 500; color: var(--orange); text-decoration: none; display: inline-flex; align-items: center; gap: 5px; }
+
+  /* ---- FOOTER ---- */
+  footer {
+    border-top: 1px solid var(--border); padding: 24px 32px;
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 12px; color: var(--text-light); max-width: 840px; margin: 0 auto;
+  }
+  .footer-links { display: flex; gap: 20px; }
+  .footer-links a { color: var(--text-light); text-decoration: none; }
+  .footer-links a:hover { color: var(--orange); }
+</style>
+</head>
+<body>
+
+<!-- TOP NAV -->
+<nav class="top-nav">
+  <div class="nav-left">
+    <div class="nav-brand">Rally 2.0</div>
+    <div class="nav-divider"></div>
+    <div class="nav-title">PM Guide</div>
+  </div>
+  <div class="nav-right">
+    <span class="nav-badge">Product Operations</span>
+    <a href="https://app.rallyuxr.com/auth/workspaces" class="nav-btn" target="_blank">Open Rally</a>
+  </div>
+</nav>
+
+<!-- PAGE NAV -->
+<div class="tab-bar">
+  <a href="rally-getting-started.html" class="tab-btn">Getting Started with Rally</a>
+  <a href="rally-outreach.html" class="tab-btn">Outreach &amp; Scheduling</a>
+  <a href="rally-help.html" class="tab-btn active">Help Center</a>
+</div>
+
+<!-- MAIN CONTENT -->
+<div class="main-content">
+
+  <section id="help" class="page-section section-white">
+    <div class="panel-inner">
+
+      <div class="content-section">
+        <div class="section-anchor-label">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" width="12" height="12"><path stroke-linecap="round" stroke-linejoin="round" d="M9.879 7.519c1.171-1.025 3.071-1.025 4.242 0 1.172 1.025 1.172 2.687 0 3.712-.203.179-.43.326-.67.442-.745.361-1.45.999-1.45 1.827v.75M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9 5.25h.008v.008H12v-.008z"/></svg>
+          Resources
+        </div>
+        <h2 class="section-heading">Help Center</h2>
+        <p class="section-subheading">Get help with setup, troubleshooting, platform questions, and ongoing Rally workflows.</p>
+
+        <div class="help-grid">
+          <a href="https://app.rallyuxr.com/auth/workspaces" class="help-card" target="_blank">
+            <div class="help-card-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/></svg></div>
+            <div class="help-card-title">Open Rally</div>
+            <div class="help-card-desc">Manage your outreach, scheduling, and customer calls.</div>
+          </a>
+          <a href="https://help.rallyuxr.com/" class="help-card" target="_blank">
+            <div class="help-card-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" d="M12 6.042A8.967 8.967 0 006 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 016 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 016-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0018 18a8.967 8.967 0 00-6 2.292m0-14.25v14.25"/></svg></div>
+            <div class="help-card-title">Rally Help Center</div>
+            <div class="help-card-desc">Help articles, platform guidance, and reference documentation.</div>
+          </a>
+          <a href="https://app.slack.com/client/T024H0HN2/#rally" class="help-card" target="_blank">
+            <div class="help-card-icon"><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" width="16" height="16"><path stroke-linecap="round" stroke-linejoin="round" d="M7.5 8.25h9m-9 3H12m-9.75 1.51c0 1.6 1.123 2.994 2.707 3.227 1.129.166 2.27.293 3.423.379.35.026.67.21.865.501L12 21l2.755-4.133a1.14 1.14 0 01.865-.501 48.172 48.172 0 003.423-.379c1.584-.233 2.707-1.626 2.707-3.228V6.741c0-1.602-1.123-2.995-2.707-3.228A48.394 48.394 0 0012 3c-2.392 0-4.744.175-7.043.513C3.373 3.746 2.25 5.14 2.25 6.741v6.018z"/></svg></div>
+            <div class="help-card-title">#rally on Slack</div>
+            <div class="help-card-desc">Quick questions, onboarding help, workflow support, and updates from Product Operations.</div>
+          </a>
+        </div>
+
+        <h3 style="font-size:17px;font-weight:700;color:var(--text);margin-bottom:16px;margin-top:40px;letter-spacing:-0.01em;">Office Hours</h3>
+        <div class="oh-grid">
+          <div class="oh-card">
+            <div class="oh-card-title">Rally Office Hours</div>
+            <div class="oh-card-meta">
+              Platform questions, troubleshooting, and Rally best practices.<br><br>
+              <strong>Day:</strong> Thursdays<br>
+              <strong>Time:</strong> 11:00 AM PDT &nbsp;|&nbsp; 1:00 PM CDT &nbsp;|&nbsp; 2:00 PM EDT
+            </div>
+            <a href="https://procore.zoom.us/j/94393456026?pwd=ef6pljJdK3ZFxMgoqV201DCUrEJm7h.1&jst=2" class="oh-link" target="_blank">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" width="12" height="12"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/></svg>
+              Join Zoom
+            </a>
+          </div>
+          <div class="oh-card">
+            <div class="oh-card-title">Emanuel's Office Hours</div>
+            <div class="oh-card-meta">
+              PM list workflow questions, onboarding support, and general guidance.<br><br>
+              <strong>Days:</strong> Every Monday &amp; Wednesday<br>
+              <strong>Time:</strong> 12:30 PM PST &nbsp;|&nbsp; 2:30 PM CST &nbsp;|&nbsp; 3:30 PM EST
+            </div>
+            <a href="https://procore.zoom.us/j/94502403365?pwd=2bkncx2SFVR7Ja9qbdhDrOSEEu793C.1" class="oh-link" target="_blank">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" width="12" height="12"><path stroke-linecap="round" stroke-linejoin="round" d="M13.5 6H5.25A2.25 2.25 0 003 8.25v10.5A2.25 2.25 0 005.25 21h10.5A2.25 2.25 0 0018 18.75V10.5m-10.5 6L21 3m0 0h-5.25M21 3v5.25"/></svg>
+              Join Zoom
+            </a>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <p>Product Operations &middot; Procore &middot; Updated April 2026</p>
+    <div class="footer-links">
+      <a href="https://app.slack.com/client/T024H0HN2/#rally" target="_blank">#rally on Slack</a>
+      <a href="https://procore.zoom.us/j/94393456026?pwd=ef6pljJdK3ZFxMgoqV201DCUrEJm7h.1&jst=2" target="_blank">Office Hours</a>
+    </div>
+  </footer>
+
+</div><!-- /main-content -->
+
+<script>
+  function toggleTemplate(trigger) {
+    const item = trigger.closest('.template-item');
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.template-item.open').forEach(i => i.classList.remove('open'));
+    if (!wasOpen) item.classList.add('open');
+  }
+</script>
+
+</body>
+</html>
