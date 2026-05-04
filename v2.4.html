@@ -535,44 +535,82 @@
           Getting Started
         </div>
         <h2 class="section-heading">Your Role &amp; Participant Access</h2>
-        <p class="section-subheading">There are three ways to work in Rally. Your role type determines your workflow in the platform and the type of access you have to the different contact lists.</p>
+        <p class="section-subheading">There are two ways to work in Rally. Your role determines your workflow in the platform and your Permissions within it.</p>
 
-        <div style="margin-top:20px;overflow-x:auto;">
-          <table style="width:100%;border-collapse:collapse;font-size:15px;">
-            <thead>
-              <tr style="background:var(--bg2);border-bottom:2px solid var(--border-strong);">
-                <th style="text-align:left;padding:12px 16px;font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text);">Role</th>
-                <th style="text-align:left;padding:12px 16px;font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text);">Private List</th>
-                <th style="text-align:left;padding:12px 16px;font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text);">Shared List</th>
-                <th style="text-align:left;padding:12px 16px;font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text);">Research Program</th>
-                <th style="text-align:left;padding:12px 16px;font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--text);">Best For</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr style="border-bottom:1px solid var(--border);background:var(--white);">
-                <td style="padding:14px 16px;font-weight:600;color:var(--text);vertical-align:top;">PM Private</td>
-                <td style="padding:14px 16px;vertical-align:top;"><span style="color:#15803D;font-weight:600;">&#10003;</span> <span style="font-weight:300;color:var(--text-secondary);">Yes</span></td>
-                <td style="padding:14px 16px;vertical-align:top;"><span style="color:#EF4444;font-weight:700;">&#10007;</span> <span style="font-weight:300;color:var(--text-secondary);">No</span></td>
-                <td style="padding:14px 16px;vertical-align:top;"><span style="color:#EF4444;font-weight:700;">&#10007;</span> <span style="font-weight:300;color:var(--text-secondary);">No</span></td>
-                <td style="padding:14px 16px;font-weight:300;color:var(--text-secondary);vertical-align:top;">Independent research only</td>
-              </tr>
-              <tr style="border-bottom:1px solid var(--border);background:var(--bg2);">
-                <td style="padding:14px 16px;font-weight:600;color:var(--text);vertical-align:top;">PM Shared</td>
-                <td style="padding:14px 16px;vertical-align:top;"><span style="color:#EF4444;font-weight:700;">&#10007;</span> <span style="font-weight:300;color:var(--text-secondary);">No</span></td>
-                <td style="padding:14px 16px;vertical-align:top;"><span style="color:#15803D;font-weight:600;">&#10003;</span> <span style="font-weight:300;color:var(--text-secondary);">Yes</span></td>
-                <td style="padding:14px 16px;vertical-align:top;"><span style="color:#15803D;font-weight:600;">&#10003;</span> <span style="font-weight:300;color:var(--text-secondary);">Yes</span><br><span style="font-size:12px;font-weight:300;color:var(--text-light);">(incentivized)</span></td>
-                <td style="padding:14px 16px;font-weight:300;color:var(--text-secondary);vertical-align:top;">Team collaboration with shared pool</td>
-              </tr>
-              <tr style="border-bottom:1px solid var(--border);background:var(--white);">
-                <td style="padding:14px 16px;font-weight:600;color:var(--text);vertical-align:top;">PM Private + Shared</td>
-                <td style="padding:14px 16px;vertical-align:top;"><span style="color:#15803D;font-weight:600;">&#10003;</span> <span style="font-weight:300;color:var(--text-secondary);">Yes</span></td>
-                <td style="padding:14px 16px;vertical-align:top;"><span style="color:#15803D;font-weight:600;">&#10003;</span> <span style="font-weight:300;color:var(--text-secondary);">Yes</span></td>
-                <td style="padding:14px 16px;vertical-align:top;"><span style="color:#15803D;font-weight:600;">&#10003;</span> <span style="font-weight:300;color:var(--text-secondary);">Yes</span><br><span style="font-size:12px;font-weight:300;color:var(--text-light);">(incentivized)</span></td>
-                <td style="padding:14px 16px;font-weight:300;color:var(--text-secondary);vertical-align:top;">Flexible solo + team research</td>
-              </tr>
-            </tbody>
-          </table>
+        <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px;">
+
+          <!-- Private Card -->
+          <div style="border:1px solid var(--border);border-radius:12px;padding:24px;background:var(--white);">
+            <div style="display:flex;align-items:flex-start;gap:14px;margin-bottom:20px;">
+              <div style="width:48px;height:48px;border-radius:50%;background:#EEF2FF;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="#4B6BFB" width="22" height="22"><path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"/></svg>
+              </div>
+              <div>
+                <div style="font-size:20px;font-weight:700;color:var(--text);line-height:1.2;">Private</div>
+                <div style="font-size:14px;color:var(--text-secondary);margin-top:4px;">Rally users who want to manage outreach independently.</div>
+              </div>
+            </div>
+            <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#4B6BFB;margin-bottom:4px;">Permissions</div>
+            <div style="display:flex;flex-direction:column;">
+              <div style="padding:12px 0;border-bottom:1px solid var(--border);">
+                <div style="font-weight:600;color:var(--text);font-size:14px;margin-bottom:3px;">Private List</div>
+                <div style="font-size:13px;color:var(--text-secondary);">Your own customer lists that you upload into Rally to conduct calls and research with</div>
+              </div>
+              <div style="padding:12px 0;border-bottom:1px solid var(--border);">
+                <div style="font-weight:600;color:var(--text);font-size:14px;margin-bottom:3px;">Rally Opted-in Database</div>
+                <div style="font-size:13px;color:var(--text-secondary);">You will not have access to the Rally Opted-in Database</div>
+              </div>
+              <div style="padding:12px 0;border-bottom:1px solid var(--border);">
+                <div style="font-weight:600;color:var(--text);font-size:14px;margin-bottom:3px;">List Visibility</div>
+                <div style="font-size:13px;color:var(--text-secondary);">These lists can only be viewed, accessed, and edited by the list owner</div>
+              </div>
+            </div>
+            <div style="margin-top:16px;background:#EEF2FF;border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start;">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="#4B6BFB" width="16" height="16" style="flex-shrink:0;margin-top:1px;"><path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"/></svg>
+              <div style="font-size:13px;color:var(--text-secondary);">Best for Rally users who want to keep their outreach and customer lists private.</div>
+            </div>
+          </div>
+
+          <!-- Shared Card -->
+          <div style="border:1px solid var(--border);border-radius:12px;padding:24px;background:var(--white);">
+            <div style="display:flex;align-items:flex-start;gap:14px;margin-bottom:20px;">
+              <div style="width:48px;height:48px;border-radius:50%;background:#DCFCE7;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.8" stroke="#15803D" width="22" height="22"><path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 003.741-.479 3 3 0 00-4.682-2.72m.94 3.198l.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0112 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 016 18.719m12 0a5.971 5.971 0 00-.941-3.197m0 0A5.995 5.995 0 0012 12.75a5.995 5.995 0 00-5.058 2.772m0 0a3 3 0 00-4.681 2.72 8.986 8.986 0 003.74.477m.94-3.197a5.971 5.971 0 00-.94 3.197M15 6.75a3 3 0 11-6 0 3 3 0 016 0zm6 3a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0zm-13.5 0a2.25 2.25 0 11-4.5 0 2.25 2.25 0 014.5 0z"/></svg>
+              </div>
+              <div>
+                <div style="font-size:20px;font-weight:700;color:var(--text);line-height:1.2;">Shared</div>
+                <div style="font-size:14px;color:var(--text-secondary);margin-top:4px;">Rally users who want access to a broader shared pool.</div>
+              </div>
+            </div>
+            <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#15803D;margin-bottom:4px;">Permissions</div>
+            <div style="display:flex;flex-direction:column;">
+              <div style="padding:12px 0;border-bottom:1px solid var(--border);">
+                <div style="font-weight:600;color:var(--text);font-size:14px;margin-bottom:3px;">Private List</div>
+                <div style="font-size:13px;color:var(--text-secondary);">No access to private lists</div>
+              </div>
+              <div style="padding:12px 0;border-bottom:1px solid var(--border);">
+                <div style="font-weight:600;color:var(--text);font-size:14px;margin-bottom:3px;">Shared List</div>
+                <div style="font-size:13px;color:var(--text-secondary);">A customer pool shared across Rally users</div>
+              </div>
+              <div style="padding:12px 0;border-bottom:1px solid var(--border);">
+                <div style="font-weight:600;color:var(--text);font-size:14px;margin-bottom:3px;">Research Program</div>
+                <div style="font-size:13px;color:var(--text-secondary);">Opt-in research participants (incentivized)</div>
+              </div>
+            </div>
+            <div style="margin-top:16px;background:#DCFCE7;border-radius:8px;padding:12px 14px;display:flex;gap:10px;align-items:flex-start;">
+              <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="#15803D" width="16" height="16" style="flex-shrink:0;margin-top:1px;"><path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"/></svg>
+              <div style="font-size:13px;color:var(--text-secondary);">Best for Rally users who want access to a broader shared pool of participants.</div>
+            </div>
+          </div>
+
         </div>
+
+        <!-- Note -->
+        <div style="margin-top:16px;border:1px solid var(--border);border-radius:10px;padding:14px 16px;display:flex;gap:10px;align-items:flex-start;background:var(--white);">
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="var(--text-secondary)" width="16" height="16" style="flex-shrink:0;margin-top:1px;"><path stroke-linecap="round" stroke-linejoin="round" d="M11.25 11.25l.041-.02a.75.75 0 011.063.852l-.708 2.836a.75.75 0 001.063.853l.041-.021M21 12a9 9 0 11-18 0 9 9 0 0118 0zm-9-3.75h.008v.008H12V8.25z"/></svg>
+          <div style="font-size:14px;color:var(--text-secondary);"><strong>Note:</strong> You can update your role later in your account settings to be able to conduct both Private + Shared research in Rally.</div>
+        </div>
+
       </div>
 
       <hr class="section-divider">
