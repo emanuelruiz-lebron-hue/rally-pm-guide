@@ -243,13 +243,12 @@
   .step-instructions li strong { font-weight: 600; color: var(--text); }
   .step-instructions a { color: var(--orange); font-weight: 500; }
 
-  .step-block.video-step {
-    width: min(1040px, calc(100vw - 48px));
-    margin-left: 50%;
-    transform: translateX(-50%);
-  }
   .guide-video {
-    margin: 20px 0 22px;
+    width: min(1120px, calc(100vw - 48px));
+    margin: 20px 50% 24px;
+    transform: translateX(-50%);
+    position: relative;
+    z-index: 2;
   }
   .guide-video-frame {
     border: 1px solid var(--border);
@@ -278,9 +277,10 @@
   .guide-video-fallback a:hover { text-decoration: underline; }
 
   @media (max-width: 900px) {
-    .step-block.video-step {
-      width: auto;
+    .guide-video {
+      width: 100%;
       margin-left: 0;
+      margin-right: 0;
       transform: none;
     }
   }
@@ -716,19 +716,20 @@
 
           <div class="workflow-label">First Login</div>
 
-          <div class="step-block video-step">
+          <div class="guide-video">
+            <div class="guide-video-frame">
+              <video controls preload="metadata" aria-label="Rally profile and connected tools setup walkthrough">
+                <source src="assets/videos/rally-profile-tools-setup.mp4" type="video/mp4">
+                <a href="assets/videos/rally-profile-tools-setup.mp4">Open the Rally profile and connected tools setup walkthrough</a>
+              </video>
+            </div>
+            <p class="guide-video-fallback"><a href="assets/videos/rally-profile-tools-setup.mp4" target="_blank" rel="noopener">Open walkthrough video</a></p>
+          </div>
+
+          <div class="step-block">
             <div class="step-header"><div class="step-number">4</div><div style="flex:1;"><div class="step-title">Complete Your Profile and Connect Your Tools</div></div></div>
             <div class="step-body">
               <p>Before creating your first study, finish your Rally profile, connect your tools, and set your interview availability. Rally uses these settings to send outreach and schedule sessions correctly.</p>
-              <div class="guide-video">
-                <div class="guide-video-frame">
-                  <video controls preload="metadata" aria-label="Rally profile and connected tools setup walkthrough">
-                    <source src="assets/videos/rally-profile-tools-setup.mp4" type="video/mp4">
-                    <a href="assets/videos/rally-profile-tools-setup.mp4">Open the Rally profile and connected tools setup walkthrough</a>
-                  </video>
-                </div>
-                <p class="guide-video-fallback"><a href="assets/videos/rally-profile-tools-setup.mp4" target="_blank" rel="noopener">Open walkthrough video</a></p>
-              </div>
               <div class="step-action-label">What to do</div>
               <ul class="step-instructions">
                 <li>In the top left corner, hover over <strong>Procore Technologies</strong> and select <strong>Settings</strong></li>
