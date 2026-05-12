@@ -244,20 +244,119 @@
   .step-instructions a { color: var(--orange); font-weight: 500; }
 
   .guide-video {
-    width: min(1120px, calc(100vw - 48px));
-    margin: 20px 50% 24px;
-    transform: translateX(-50%);
-    position: relative;
-    z-index: 2;
+    margin: 18px 0 20px;
   }
-  .guide-video-frame {
+  .video-preview-button {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 14px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--bg);
+    cursor: pointer;
+    font-family: 'Inter Tight', sans-serif;
+    text-align: left;
+    transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  }
+  .video-preview-button:hover {
+    border-color: rgba(255,82,0,0.28);
+    box-shadow: 0 8px 26px rgba(0,0,0,0.07);
+    transform: translateY(-1px);
+  }
+  .video-preview-thumb {
+    width: 180px;
+    aspect-ratio: 1920 / 1026;
+    flex-shrink: 0;
+    border-radius: 9px;
+    background: linear-gradient(135deg, #1A1A1A, #555555);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--white);
+    box-shadow: inset 0 0 0 1px rgba(255,255,255,0.18);
+  }
+  .video-play-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    background: var(--orange);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    line-height: 1;
+  }
+  .video-preview-copy { flex: 1; min-width: 0; }
+  .video-preview-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--orange);
+    margin-bottom: 4px;
+  }
+  .video-preview-title {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--text);
+    line-height: 1.3;
+  }
+  .video-preview-desc {
+    font-size: 14px;
+    font-weight: 300;
+    color: var(--text-secondary);
+    line-height: 1.45;
+    margin-top: 3px;
+  }
+  .video-modal {
+    position: fixed;
+    inset: 0;
+    z-index: 500;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 32px;
+    background: rgba(0,0,0,0.72);
+  }
+  .video-modal.open { display: flex; }
+  .video-modal-dialog {
+    width: min(1280px, calc(100vw - 64px));
+    max-height: calc(100vh - 64px);
+  }
+  .video-modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 10px;
+    color: var(--white);
+  }
+  .video-modal-title {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+  .video-modal-close {
+    width: 36px;
+    height: 36px;
+    border: 1px solid rgba(255,255,255,0.28);
+    border-radius: 50%;
+    background: rgba(255,255,255,0.12);
+    color: var(--white);
+    cursor: pointer;
+    font-size: 22px;
+    line-height: 1;
+  }
+  .video-modal-frame {
     border: 1px solid var(--border);
     border-radius: 12px;
     overflow: hidden;
     background: #000;
     aspect-ratio: 1920 / 1026;
   }
-  .guide-video-frame video {
+  .video-modal-frame video {
     width: 100%;
     height: 100%;
     display: block;
@@ -277,11 +376,19 @@
   .guide-video-fallback a:hover { text-decoration: underline; }
 
   @media (max-width: 900px) {
-    .guide-video {
+    .video-preview-button {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+    .video-preview-thumb {
       width: 100%;
-      margin-left: 0;
-      margin-right: 0;
-      transform: none;
+    }
+    .video-modal {
+      padding: 14px;
+    }
+    .video-modal-dialog {
+      width: calc(100vw - 28px);
+      max-height: calc(100vh - 28px);
     }
   }
 
@@ -716,20 +823,23 @@
 
           <div class="workflow-label">First Login</div>
 
-          <div class="guide-video">
-            <div class="guide-video-frame">
-              <video controls preload="metadata" aria-label="Rally profile and connected tools setup walkthrough">
-                <source src="assets/videos/rally-profile-tools-setup.mp4" type="video/mp4">
-                <a href="assets/videos/rally-profile-tools-setup.mp4">Open the Rally profile and connected tools setup walkthrough</a>
-              </video>
-            </div>
-            <p class="guide-video-fallback"><a href="assets/videos/rally-profile-tools-setup.mp4" target="_blank" rel="noopener">Open walkthrough video</a></p>
-          </div>
-
           <div class="step-block">
             <div class="step-header"><div class="step-number">4</div><div style="flex:1;"><div class="step-title">Complete Your Profile and Connect Your Tools</div></div></div>
             <div class="step-body">
               <p>Before creating your first study, finish your Rally profile, connect your tools, and set your interview availability. Rally uses these settings to send outreach and schedule sessions correctly.</p>
+              <div class="guide-video">
+                <button class="video-preview-button" type="button" data-video-open aria-haspopup="dialog" aria-controls="profile-tools-video-modal">
+                  <span class="video-preview-thumb" aria-hidden="true">
+                    <span class="video-play-icon">&#9658;</span>
+                  </span>
+                  <span class="video-preview-copy">
+                    <span class="video-preview-label">Video walkthrough</span>
+                    <span class="video-preview-title">Watch profile and tools setup</span>
+                    <span class="video-preview-desc">Open a larger player for the clearest view of the Rally setup flow.</span>
+                  </span>
+                </button>
+                <p class="guide-video-fallback"><a href="assets/videos/rally-profile-tools-setup.mp4" target="_blank" rel="noopener">Open video in a new tab</a></p>
+              </div>
               <div class="step-action-label">What to do</div>
               <ul class="step-instructions">
                 <li>In the top left corner, hover over <strong>Procore Technologies</strong> and select <strong>Settings</strong></li>
@@ -1004,6 +1114,21 @@
   </footer>
 </div>
 
+<div class="video-modal" id="profile-tools-video-modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="profile-tools-video-title">
+  <div class="video-modal-dialog">
+    <div class="video-modal-header">
+      <div class="video-modal-title" id="profile-tools-video-title">Rally profile and connected tools setup</div>
+      <button class="video-modal-close" type="button" data-video-close aria-label="Close walkthrough video">&times;</button>
+    </div>
+    <div class="video-modal-frame">
+      <video id="profile-tools-video-player" controls preload="metadata" aria-label="Rally profile and connected tools setup walkthrough">
+        <source src="assets/videos/rally-profile-tools-setup.mp4" type="video/mp4">
+        <a href="assets/videos/rally-profile-tools-setup.mp4">Open the Rally profile and connected tools setup walkthrough</a>
+      </video>
+    </div>
+  </div>
+</div>
+
 <script>
   const sections = document.querySelectorAll('.page-section');
   const navLinks = document.querySelectorAll('a.tab-btn');
@@ -1036,6 +1161,48 @@
         event.preventDefault();
       }
     });
+  });
+
+  const videoModal = document.getElementById('profile-tools-video-modal');
+  const videoPlayer = document.getElementById('profile-tools-video-player');
+  const videoOpen = document.querySelector('[data-video-open]');
+  const videoClose = document.querySelector('[data-video-close]');
+
+  function openVideoModal() {
+    if (!videoModal) return;
+    videoModal.classList.add('open');
+    videoModal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    if (videoClose) videoClose.focus();
+  }
+
+  function closeVideoModal() {
+    if (!videoModal) return;
+    videoModal.classList.remove('open');
+    videoModal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    if (videoPlayer) videoPlayer.pause();
+    if (videoOpen) videoOpen.focus();
+  }
+
+  if (videoOpen) {
+    videoOpen.addEventListener('click', openVideoModal);
+  }
+
+  if (videoClose) {
+    videoClose.addEventListener('click', closeVideoModal);
+  }
+
+  if (videoModal) {
+    videoModal.addEventListener('click', event => {
+      if (event.target === videoModal) closeVideoModal();
+    });
+  }
+
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && videoModal && videoModal.classList.contains('open')) {
+      closeVideoModal();
+    }
   });
 </script>
 
