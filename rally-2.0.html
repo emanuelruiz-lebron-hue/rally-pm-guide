@@ -230,7 +230,7 @@
     font-size: 14px; font-weight: 700;
     display: flex; align-items: center; justify-content: center;
   }
-  .step-title { font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 3px; }
+  .step-title { font-size: 18px; font-weight: 700; color: var(--text); margin-bottom: 3px; }
   .step-subtitle { font-size: 16px; font-weight: 300; color: var(--text-secondary); }
   .step-body { padding: 20px 24px; }
   .step-body > p { font-size: 16px; font-weight: 300; color: var(--text-secondary); line-height: 1.7; margin-bottom: 16px; }
@@ -242,6 +242,17 @@
   .step-instructions li { font-size: 16px; font-weight: 300; color: var(--text-secondary); line-height: 1.6; }
   .step-instructions li strong { font-weight: 600; color: var(--text); }
   .step-instructions a { color: var(--orange); font-weight: 500; }
+  .guide-screenshot-caption {
+    padding: 8px 12px;
+    background: #F5F5F5;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    font-size: 12px;
+    font-weight: 700;
+    color: #8A8A8A;
+    letter-spacing: 0.06em;
+    line-height: 1.35;
+    text-transform: uppercase;
+  }
 
   .guide-video {
     margin: 18px 0 20px;
@@ -424,27 +435,27 @@
   .support-list li { font-size: 16px; font-weight: 300; line-height: 1.6; color: var(--text-secondary); }
 
   .role-selection-helper {
-    font-size: 15px; font-weight: 500; color: var(--text-secondary);
-    line-height: 1.6; margin: -10px 0 18px;
+    font-size: 16px; font-weight: 500; color: var(--text-secondary);
+    line-height: 1.65; margin: -10px 0 18px;
   }
   .role-path-card {
-    border: 1px solid var(--border); border-top-width: 4px; border-radius: 12px; padding: 20px 22px;
+    border: 1px solid var(--border); border-top-width: 4px; border-radius: 12px; padding: 22px 24px;
     background: var(--white); color: inherit;
     display: block;
   }
   .role-path-card.private { border-top-color: #4B6BFB; }
   .role-path-card.shared { border-top-color: #15803D; }
   .role-path-title {
-    font-size: 20px; font-weight: 700; color: var(--text);
+    font-size: 22px; font-weight: 700; color: var(--text);
     line-height: 1.2; margin-bottom: 5px;
   }
   .role-path-desc {
-    font-size: 14px; font-weight: 300; color: var(--text-secondary);
-    line-height: 1.55; margin-bottom: 18px;
+    font-size: 16px; font-weight: 300; color: var(--text-secondary);
+    line-height: 1.55; margin-bottom: 20px;
   }
   .role-permission-label {
-    font-size: 10px; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase;
-    margin-bottom: 6px;
+    font-size: 11px; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase;
+    margin-bottom: 7px;
   }
   .role-path-card.private .role-permission-label { color: #4B6BFB; }
   .role-path-card.shared .role-permission-label { color: #15803D; }
@@ -452,15 +463,15 @@
     display: flex; flex-direction: column; border-top: 1px solid var(--border);
   }
   .role-permission-row {
-    padding: 11px 0; border-bottom: 1px solid var(--border);
+    padding: 14px 0; border-bottom: 1px solid var(--border);
   }
   .role-permission-name {
-    font-size: 14px; font-weight: 700; color: var(--text);
-    line-height: 1.35; margin-bottom: 3px;
+    font-size: 16px; font-weight: 700; color: var(--text);
+    line-height: 1.35; margin-bottom: 4px;
   }
   .role-permission-copy {
-    font-size: 13px; font-weight: 300; color: var(--text-secondary);
-    line-height: 1.5;
+    font-size: 16px; font-weight: 300; color: var(--text-secondary);
+    line-height: 1.55;
   }
 
   .workflow-selector {
@@ -502,15 +513,15 @@
     background: var(--orange-dim); border: 1px solid rgba(255,82,0,0.15);
     display: flex; align-items: center; justify-content: center; color: var(--orange); margin-bottom: 14px;
   }
-  .help-card-title { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 5px; }
-  .help-card-desc { font-size: 14px; font-weight: 300; color: var(--text-light); line-height: 1.5; }
+  .help-card-title { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
+  .help-card-desc { font-size: 16px; font-weight: 300; color: var(--text-light); line-height: 1.55; }
 
   .oh-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 24px; }
-  .oh-card { background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 20px 22px; }
-  .oh-card-title { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
-  .oh-card-meta { font-size: 14px; font-weight: 300; color: var(--text-secondary); line-height: 1.7; margin-bottom: 12px; }
+  .oh-card { background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 22px 24px; }
+  .oh-card-title { font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 9px; }
+  .oh-card-meta { font-size: 16px; font-weight: 300; color: var(--text-secondary); line-height: 1.65; margin-bottom: 14px; }
   .oh-card-meta strong { font-weight: 600; color: var(--text); }
-  .oh-link { font-size: 12px; font-weight: 500; color: var(--orange); text-decoration: none; display: inline-flex; align-items: center; gap: 5px; }
+  .oh-link { font-size: 13px; font-weight: 700; color: var(--orange); text-decoration: none; display: inline-flex; align-items: center; gap: 5px; }
 
   .workflow-label {
     display: flex; align-items: center; gap: 14px;
@@ -529,8 +540,8 @@
     background: var(--white); border: 1px solid var(--border); border-radius: 12px;
     padding: 18px 20px; margin: -4px 0 20px;
   }
-  .workflow-note-title { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
-  .workflow-note-text { font-size: 15px; font-weight: 300; color: var(--text-secondary); line-height: 1.65; }
+  .workflow-note-title { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 5px; }
+  .workflow-note-text { font-size: 16px; font-weight: 300; color: var(--text-secondary); line-height: 1.65; }
   .critical-step {
     border-color: rgba(220,38,38,0.55);
     border-top: 5px solid var(--danger-border);
@@ -576,16 +587,16 @@
     color: var(--orange);
   }
   .chapter-end-heading {
-    font-size: 18px; font-weight: 700; color: var(--text); line-height: 1.3; margin: 0;
+    font-size: 20px; font-weight: 700; color: var(--text); line-height: 1.3; margin: 0;
   }
   .chapter-end-desc {
-    font-size: 15px; font-weight: 300; color: var(--text-secondary); line-height: 1.6;
+    font-size: 16px; font-weight: 300; color: var(--text-secondary); line-height: 1.6;
     max-width: 560px; margin: 0;
   }
   .chapter-end-btn {
     margin-top: 10px;
     display: inline-block;
-    font-size: 13px; font-weight: 700;
+    font-size: 14px; font-weight: 700;
     color: var(--white); background: var(--orange);
     border-radius: 8px; padding: 10px 16px;
     text-decoration: none; white-space: nowrap;
@@ -782,7 +793,7 @@
         </div>
 
         <div style="margin-top:16px;border:1px solid var(--border);border-radius:10px;padding:14px 16px;background:var(--white);">
-          <div style="font-size:14px;color:var(--text-secondary);"><strong>Note:</strong> You can update your role later in your account settings to be able to conduct both Private + Shared research in Rally.</div>
+          <div style="font-size:16px;line-height:1.6;color:var(--text-secondary);"><strong>Note:</strong> You can update your role later in your account settings to be able to conduct both Private + Shared research in Rally.</div>
         </div>
       </div>
 
@@ -898,7 +909,7 @@
                   <li>When the duplicate modal opens, pause before clicking <strong>Duplicate study</strong></li>
                 </ul>
                 <div style="margin-top:16px;border:1px solid rgba(0,0,0,0.08);border-radius:10px;overflow:hidden;">
-                  <div style="padding:7px 12px;background:#F5F5F5;border-bottom:1px solid rgba(0,0,0,0.06);font-size:11px;font-weight:600;color:#999;letter-spacing:0.06em;text-transform:uppercase;">Click Studies, check the box, then click Duplicate</div>
+                  <div class="guide-screenshot-caption">Click Studies, check the box, then click Duplicate</div>
                   <img src="rally-studies.png" alt="Studies list with checkbox and Duplicate button highlighted" style="width:100%;display:block;">
                 </div>
               </div>
@@ -909,7 +920,7 @@
               <div class="step-body">
                 <p>When the duplicate modal opens, always check <strong>"Include participants"</strong> before clicking <strong>Duplicate study</strong>. If you skip this, your customer list will not transfer and you'll have to re-import the entire list manually.</p>
                 <div style="margin-top:16px;border:1px solid rgba(0,0,0,0.08);border-radius:10px;overflow:hidden;">
-                  <div style="padding:7px 12px;background:#F5F5F5;border-bottom:1px solid rgba(0,0,0,0.06);font-size:11px;font-weight:600;color:#999;letter-spacing:0.06em;text-transform:uppercase;">Check Include participants before clicking Duplicate study</div>
+                  <div class="guide-screenshot-caption">Check Include participants before clicking Duplicate study</div>
                   <img src="rally-duplicate-modal.png" alt="Duplicate study modal with Include participants and Duplicate study button highlighted" style="width:100%;display:block;">
                 </div>
               </div>
@@ -1078,7 +1089,7 @@
           </a>
         </div>
 
-        <h3 style="font-size:17px;font-weight:700;color:var(--text);margin-bottom:16px;letter-spacing:-0.01em;">Office Hours</h3>
+        <h3 style="font-size:18px;font-weight:700;color:var(--text);margin-bottom:16px;letter-spacing:-0.01em;">Office Hours</h3>
         <div class="oh-grid">
           <div class="oh-card">
             <div class="oh-card-title">Rally Office Hours</div>
