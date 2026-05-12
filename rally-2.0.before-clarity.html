@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rally 2.0 Guide | Procore</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300&amp;display=swap" rel="stylesheet">
+<style>
+  :root {
+    --orange:        #FF5200;
+    --orange-light:  #FF7A33;
+    --orange-dim:    rgba(255, 82, 0, 0.08);
+    --orange-dim2:   rgba(255, 82, 0, 0.04);
+    --dark:          #1A1A1A;
+    --white:         #FFFFFF;
+    --bg:            #FAFAFA;
+    --bg2:           #F3F3F3;
+    --text:          #1A1A1A;
+    --text-secondary:#555555;
+    --text-light:    #777777;
+    --border:        rgba(0,0,0,0.08);
+    --border-strong: rgba(0,0,0,0.14);
+    --nav-height:    60px;
+    --tab-height:    48px;
+    --tip-bg:     #EFF6FF; --tip-border:  #3B82F6; --tip-text:   #1D4ED8;
+    --warn-bg:    #FFFBEB; --warn-border: #F59E0B; --warn-text:  #B45309;
+    --good-bg:    #F0FAF0; --good-border: #22C55E; --good-text:  #15803D;
+    --admin-bg:   #F5F3FF; --admin-border:#8B5CF6; --admin-text: #6D28D9;
+    --danger-bg:  #FEF2F2; --danger-border:#DC2626; --danger-text:#991B1B;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter Tight', sans-serif;
+    font-weight: 300;
+    line-height: 1.65;
+  }
+
+  .top-nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+    height: var(--nav-height);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 32px;
+    background: rgba(250,250,250,0.95);
+    backdrop-filter: blur(20px);
+    border-top: 4px solid var(--orange);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .nav-left { display: flex; align-items: center; gap: 16px; }
+  .nav-brand { font-size: 15px; font-weight: 700; color: var(--orange); letter-spacing: -0.02em; }
+  .nav-divider { width: 1px; height: 18px; background: var(--border-strong); }
+  .nav-title { font-size: 14px; font-weight: 400; color: var(--text-secondary); }
+
+  .nav-right { display: flex; align-items: center; gap: 12px; }
+  .nav-badge {
+    font-size: 11px; font-weight: 600; letter-spacing: 0.05em; text-transform: uppercase;
+    color: var(--text-light); background: var(--bg2); border: 1px solid var(--border-strong);
+    border-radius: 6px; padding: 4px 10px;
+  }
+  .nav-btn {
+    font-size: 13px; font-weight: 500; color: var(--white); background: var(--orange);
+    border: none; border-radius: 7px; padding: 7px 16px; cursor: pointer;
+    text-decoration: none; transition: background 0.2s;
+  }
+  .nav-btn:hover { background: var(--orange-light); }
+
+  .tab-bar {
+    position: fixed; top: var(--nav-height); left: 0; right: 0; z-index: 100;
+    height: var(--tab-height);
+    display: flex; align-items: stretch; justify-content: center;
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 0 32px;
+    gap: 4px;
+  }
+
+  a.tab-btn {
+    display: flex; align-items: center; gap: 7px;
+    padding: 0 16px;
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 16px; font-weight: 400;
+    color: var(--text-light);
+    background: none; border: none; border-bottom: 2px solid transparent;
+    cursor: pointer; transition: color 0.15s, border-color 0.15s;
+    margin-bottom: -1px; white-space: nowrap;
+    text-decoration: none;
+  }
+  a.tab-btn:hover { color: var(--text); }
+  a.tab-btn.active { color: var(--orange); border-bottom-color: var(--orange); font-weight: 600; }
+
+  .main-content {
+    padding-top: calc(var(--nav-height) + var(--tab-height));
+  }
+
+  .page-section {
+    scroll-margin-top: calc(var(--nav-height) + var(--tab-height));
+  }
+  .page-section.section-white {
+    background: var(--white);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .panel-inner {
+    max-width: 840px;
+    margin: 0 auto;
+    padding: 56px 32px 72px;
+  }
+
+  .doc-header { margin-bottom: 52px; }
+  .doc-type-row { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; }
+  .doc-type-badge {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--orange); background: var(--orange-dim); border: 1px solid rgba(255,82,0,0.2);
+    border-radius: 5px; padding: 3px 9px;
+  }
+  .doc-system-badge {
+    font-size: 10px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--text-light); background: var(--bg2); border: 1px solid var(--border-strong);
+    border-radius: 5px; padding: 3px 9px;
+  }
+  .doc-title {
+    font-size: 32px; font-weight: 800; color: var(--text);
+    letter-spacing: -0.03em; line-height: 1.15; margin-bottom: 12px;
+  }
+  .doc-description {
+    font-size: 18px; font-weight: 300; color: var(--text-secondary);
+    line-height: 1.7; max-width: 620px; margin-bottom: 28px;
+  }
+  .doc-meta-grid {
+    display: flex; gap: 32px; flex-wrap: wrap;
+    padding-top: 20px; border-top: 1px solid var(--border);
+  }
+  .doc-meta-label { font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-light); margin-bottom: 3px; }
+  .doc-meta-value { font-size: 14px; font-weight: 500; color: var(--text); }
+
+  .content-section { margin-bottom: 56px; }
+  .content-section:last-child { margin-bottom: 0; }
+  .section-anchor-label {
+    display: inline-flex; align-items: center; gap: 5px;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase;
+    color: var(--text-light); margin-bottom: 10px;
+  }
+  .section-heading {
+    font-size: 26px; font-weight: 700; color: var(--text);
+    letter-spacing: -0.02em; margin-bottom: 8px;
+  }
+  .section-subheading {
+    font-size: 18px; font-weight: 300; color: var(--text-secondary);
+    line-height: 1.7; margin-bottom: 24px; max-width: 640px;
+  }
+  .section-divider { border: none; border-top: 1px solid var(--border); margin: 52px 0; }
+
+  .steps-wrapper {
+    display: flex; flex-direction: column; gap: 0;
+    position: relative;
+  }
+  .steps-wrapper::before {
+    content: '';
+    position: absolute;
+    left: 39px;
+    top: 48px;
+    bottom: 48px;
+    width: 1.5px;
+    background: var(--border);
+    z-index: 0;
+  }
+  .step-block {
+    border: 1px solid var(--border); border-radius: 12px;
+    background: var(--white); overflow: hidden;
+    margin-bottom: 12px;
+    position: relative; z-index: 1;
+  }
+  .page-section.section-white .step-block {
+    background: var(--bg);
+  }
+  .page-section.section-white .step-header {
+    background: var(--bg2);
+  }
+  .step-header {
+    display: flex; align-items: flex-start; gap: 16px;
+    padding: 20px 24px; border-bottom: 1px solid var(--border);
+    background: var(--bg2);
+  }
+  .step-number {
+    width: 32px; height: 32px; border-radius: 50%; flex-shrink: 0;
+    background: var(--orange); color: var(--white);
+    font-size: 14px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .step-title { font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 3px; }
+  .step-subtitle { font-size: 16px; font-weight: 300; color: var(--text-secondary); }
+  .step-body { padding: 20px 24px; }
+  .step-body > p { font-size: 18px; font-weight: 300; color: var(--text-secondary); line-height: 1.7; margin-bottom: 16px; }
+  .step-action-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--text-light); margin-bottom: 10px; margin-top: 16px;
+  }
+  .step-instructions { padding-left: 18px; display: flex; flex-direction: column; gap: 8px; }
+  .step-instructions li { font-size: 17px; font-weight: 300; color: var(--text-secondary); line-height: 1.6; }
+  .step-instructions li strong { font-weight: 600; color: var(--text); }
+  .step-instructions a { color: var(--orange); font-weight: 500; }
+
+  .callout {
+    display: flex; gap: 12px; padding: 14px 16px;
+    border-radius: 9px; margin-top: 16px;
+    border: 1px solid;
+  }
+  .callout.tip     { background: var(--tip-bg);   border-color: var(--tip-border); }
+  .callout.warning { background: var(--warn-bg);  border-color: var(--warn-border); }
+  .callout.danger  { background: var(--danger-bg); border-color: var(--danger-border); }
+  .callout.best-practice { background: var(--good-bg); border-color: var(--good-border); }
+  .callout.help    { background: var(--admin-bg); border-color: var(--admin-border); }
+  .callout-icon {
+    width: 24px; height: 24px; border-radius: 6px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .callout.tip     .callout-icon { background: var(--tip-border);   color: white; }
+  .callout.warning .callout-icon { background: var(--warn-border);  color: white; }
+  .callout.danger  .callout-icon { background: var(--danger-border); color: white; }
+  .callout.best-practice .callout-icon { background: var(--good-border); color: white; }
+  .callout.help    .callout-icon { background: var(--admin-border); color: white; }
+  .callout-label { font-size: 11px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 3px; }
+  .callout.tip     .callout-label { color: var(--tip-text); }
+  .callout.warning .callout-label { color: var(--warn-text); }
+  .callout.danger  .callout-label { color: var(--danger-text); }
+  .callout.best-practice .callout-label { color: var(--good-text); }
+  .callout.help    .callout-label { color: var(--admin-text); }
+  .callout-text { font-size: 17px; font-weight: 300; line-height: 1.65; color: var(--text-secondary); }
+  .callout-text strong { font-weight: 600; color: var(--text); }
+  .callout-text a { color: var(--orange); font-weight: 500; }
+  .support-list { margin: 0; padding-left: 18px; display: flex; flex-direction: column; gap: 7px; }
+  .support-list li { font-size: 16px; font-weight: 300; line-height: 1.6; color: var(--text-secondary); }
+
+  .role-path-helper {
+    font-size: 15px; font-weight: 500; color: var(--text-secondary);
+    line-height: 1.6; margin: -10px 0 18px;
+  }
+  .role-path-card {
+    border: 1px solid var(--border); border-radius: 12px; padding: 24px;
+    background: var(--white); color: inherit; text-decoration: none;
+    display: block; cursor: pointer;
+    transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  }
+  .role-path-card:hover {
+    border-color: rgba(255,82,0,0.24);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    transform: translateY(-2px);
+  }
+  .role-path-cta {
+    margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--border);
+    font-size: 13px; font-weight: 700; color: var(--orange);
+  }
+
+  .help-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; margin-bottom: 40px; }
+  .help-card {
+    background: var(--bg); border: 1px solid var(--border); border-radius: 12px;
+    padding: 20px 22px; text-decoration: none;
+    transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s; display: block;
+  }
+  .help-card:hover { border-color: rgba(255,82,0,0.2); box-shadow: 0 4px 20px rgba(0,0,0,0.06); transform: translateY(-2px); }
+  .help-card-icon {
+    width: 36px; height: 36px; border-radius: 8px;
+    background: var(--orange-dim); border: 1px solid rgba(255,82,0,0.15);
+    display: flex; align-items: center; justify-content: center; color: var(--orange); margin-bottom: 14px;
+  }
+  .help-card-title { font-size: 15px; font-weight: 600; color: var(--text); margin-bottom: 5px; }
+  .help-card-desc { font-size: 14px; font-weight: 300; color: var(--text-light); line-height: 1.5; }
+
+  .oh-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 24px; }
+  .oh-card { background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 20px 22px; }
+  .oh-card-title { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 8px; }
+  .oh-card-meta { font-size: 14px; font-weight: 300; color: var(--text-secondary); line-height: 1.7; margin-bottom: 12px; }
+  .oh-card-meta strong { font-weight: 600; color: var(--text); }
+  .oh-link { font-size: 12px; font-weight: 500; color: var(--orange); text-decoration: none; display: inline-flex; align-items: center; gap: 5px; }
+
+  .workflow-label {
+    display: flex; align-items: center; gap: 14px;
+    margin: 32px 0 20px;
+    font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+    color: var(--text-secondary);
+    white-space: nowrap;
+  }
+  .workflow-label::before, .workflow-label::after {
+    content: ''; flex: 1; height: 2px; background: var(--border-strong);
+  }
+  .workflow-label:target {
+    color: var(--orange);
+  }
+  .workflow-note {
+    background: var(--white); border: 1px solid var(--border); border-radius: 12px;
+    padding: 18px 20px; margin: -4px 0 20px;
+  }
+  .workflow-note-title { font-size: 15px; font-weight: 700; color: var(--text); margin-bottom: 4px; }
+  .workflow-note-text { font-size: 15px; font-weight: 300; color: var(--text-secondary); line-height: 1.65; }
+  .critical-step {
+    border-color: rgba(220,38,38,0.55);
+    border-top: 5px solid var(--danger-border);
+  }
+  .critical-step .step-header {
+    background: var(--danger-bg);
+    border-bottom-color: rgba(220,38,38,0.22);
+  }
+  .critical-step .step-number {
+    background: var(--danger-border);
+  }
+  .critical-step .step-title {
+    color: var(--danger-text);
+    font-size: 19px;
+  }
+  .critical-step .step-body > p {
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--text);
+  }
+  .step-badge-onetime {
+    display: inline-flex; align-items: center;
+    font-size: 10px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--good-text); background: var(--good-bg); border: 1px solid var(--good-border);
+    border-radius: 5px; padding: 2px 8px; margin-left: auto;
+  }
+
+  .chapter-end {
+    margin-top: 48px;
+    padding: 40px 32px;
+    background: var(--orange);
+    border-radius: 12px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  .chapter-end-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    color: rgba(255,255,255,0.65);
+  }
+  .chapter-end-heading {
+    font-size: 22px; font-weight: 700; color: var(--white); line-height: 1.3; margin: 0;
+  }
+  .chapter-end-desc {
+    font-size: 16px; font-weight: 400; color: rgba(255,255,255,0.82); line-height: 1.65;
+    max-width: 480px; margin: 0;
+  }
+  .chapter-end-btn {
+    margin-top: 10px;
+    display: inline-block;
+    font-size: 14px; font-weight: 700;
+    color: var(--orange); background: var(--white);
+    border-radius: 8px; padding: 12px 28px;
+    text-decoration: none; white-space: nowrap;
+  }
+  .chapter-header {
+    padding-bottom: 32px;
+    margin-bottom: 40px;
+    border-bottom: 1px solid var(--border);
+  }
+  .chapter-header-label {
+    font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--orange); margin-bottom: 10px;
+  }
+  .chapter-header-heading {
+    font-size: 28px; font-weight: 700; color: var(--text); line-height: 1.25; margin: 0 0 14px;
+  }
+  .chapter-header-desc {
+    font-size: 17px; font-weight: 400; color: var(--text-secondary); line-height: 1.65;
+    max-width: 560px; margin: 0;
+  }
+
+  footer {
+    border-top: 1px solid var(--border); padding: 24px 32px;
+    display: flex; align-items: center; justify-content: space-between;
+    font-size: 12px; color: var(--text-light); max-width: 840px; margin: 0 auto;
+  }
+  .footer-links { display: flex; gap: 20px; }
+  .footer-links a { color: var(--text-light); text-decoration: none; }
+  .footer-links a:hover { color: var(--orange); }
+
+  @media (max-width: 760px) {
+    .top-nav { padding: 0 16px; }
+    .nav-badge { display: none; }
+    .tab-bar { justify-content: flex-start; overflow-x: auto; padding: 0 16px; }
+    a.tab-btn { font-size: 14px; padding: 0 10px; }
+    .panel-inner { padding: 40px 18px 56px; }
+    .doc-title { font-size: 28px; }
+    .comparison-grid, .role-choice-grid, .oh-grid { grid-template-columns: 1fr !important; }
+    .step-header { padding: 18px; }
+    .step-body { padding: 18px; }
+    footer { flex-direction: column; align-items: flex-start; gap: 12px; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="top-nav">
+  <div class="nav-left">
+    <div class="nav-brand">Rally 2.0</div>
+    <div class="nav-divider"></div>
+    <div class="nav-title">Guide</div>
+  </div>
+  <div class="nav-right">
+    <span class="nav-badge">Product Operations</span>
+    <a href="https://app.rallyuxr.com/auth/workspaces" class="nav-btn" target="_blank">Open Rally</a>
+  </div>
+</nav>
+
+<div class="tab-bar">
+  <a href="#getting-started" class="tab-btn active">Getting Started with Rally</a>
+  <a href="#outreach" class="tab-btn">Rally Outreach and Scheduling</a>
+  <a href="#help" class="tab-btn">Help Center</a>
+</div>
+
+<div class="main-content">
+  <section id="getting-started" class="page-section section-white">
+    <div class="panel-inner">
+      <div class="doc-header">
+        <div class="doc-type-row">
+          <span class="doc-type-badge">SOP</span>
+          <span class="doc-system-badge">Rally</span>
+        </div>
+        <h1 class="doc-title">Rally 2.0 Guide</h1>
+        <p class="doc-description">Streamline recruitment, scheduling, and follow-up. Save hours and run better research sessions.</p>
+        <div class="doc-meta-grid">
+          <div class="doc-meta-item">
+            <div class="doc-meta-label">Setup Time</div>
+            <div class="doc-meta-value">Onboarding: 10 minutes &nbsp;·&nbsp; First study setup: 15 minutes</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <div class="section-anchor-label">Overview</div>
+        <h2 class="section-heading">What is Rally?</h2>
+        <p class="section-subheading">Rally is your all-in-one platform for sourcing, scheduling, tracking, and incentivizing participant research. Stop managing spreadsheets and manual follow-ups. Automate the logistics so you can focus on insights.</p>
+
+        <div class="comparison-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:24px;">
+          <div style="background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:20px 22px;">
+            <div style="font-size:13px;font-weight:700;color:var(--text);margin-bottom:12px;">Without Rally</div>
+            <ul style="list-style:disc;padding-left:18px;display:flex;flex-direction:column;gap:8px;">
+              <li style="font-size:16px;font-weight:300;color:var(--text-secondary);line-height:1.6;">Contacts are scattered across spreadsheets</li>
+              <li style="font-size:16px;font-weight:300;color:var(--text-secondary);line-height:1.6;">Scheduling conflicts and manual booking back-and-forth</li>
+              <li style="font-size:16px;font-weight:300;color:var(--text-secondary);line-height:1.6;">Follow up reminders slip through the cracks</li>
+              <li style="font-size:16px;font-weight:300;color:var(--text-secondary);line-height:1.6;">No real-time visibility into participant status or no-show rates</li>
+              <li style="font-size:16px;font-weight:300;color:var(--text-secondary);line-height:1.6;">Multiple point solutions needed to achieve your research goals</li>
+            </ul>
+          </div>
+          <div style="background:var(--orange-dim);border:1px solid rgba(255,82,0,0.2);border-radius:12px;padding:20px 22px;">
+            <div style="font-size:13px;font-weight:700;color:var(--orange);margin-bottom:12px;">With Rally</div>
+            <ul style="list-style:disc;padding-left:18px;display:flex;flex-direction:column;gap:8px;">
+              <li style="font-size:16px;font-weight:300;color:var(--text-secondary);line-height:1.6;">All contacts, responses, and bookings in one centralized dashboard</li>
+              <li style="font-size:16px;font-weight:300;color:var(--text-secondary);line-height:1.6;">Customers self-schedule via a single booking link with no back-and-forth</li>
+              <li style="font-size:16px;font-weight:300;color:var(--text-secondary);line-height:1.6;">Automated reminders and follow-ups for no-shows</li>
+              <li style="font-size:16px;font-weight:300;color:var(--text-secondary);line-height:1.6;">Real-time tracking of confirmations and no-show rates</li>
+              <li style="font-size:16px;font-weight:300;color:var(--text-secondary);line-height:1.6;">Source, schedule, and manage participants from a single dashboard</li>
+              <li style="font-size:16px;font-weight:300;color:var(--text-secondary);line-height:1.6;">Send outreach directly through approved Procore templates and workflows</li>
+              <li style="font-size:16px;font-weight:300;color:var(--text-secondary);line-height:1.6;">Schedule calls via Gmail, Google Calendar, and Zoom integrations</li>
+              <li style="font-size:16px;font-weight:300;color:var(--text-secondary);line-height:1.6;">Invite teammates to join calls as observers</li>
+              <li style="font-size:16px;font-weight:300;color:var(--text-secondary);line-height:1.6;">Reuse participant lists by duplicating past studies</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <hr class="section-divider">
+
+      <div class="content-section">
+        <div class="section-anchor-label">Getting Started</div>
+        <h2 class="section-heading">Your Role and Permissions</h2>
+        <p class="section-subheading">There are two ways to work in Rally. Your role determines your workflow in the platform and your permissions within it.</p>
+        <p class="role-path-helper">Pick the path that matches the IT ticket you submitted. You can change this later in account settings — see the note below.</p>
+
+        <div class="role-choice-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px;">
+          <a href="#outreach-private" class="role-path-card">
+            <div style="font-size:20px;font-weight:700;color:var(--text);line-height:1.2;">Private</div>
+            <div style="font-size:14px;color:var(--text-secondary);margin-top:4px;">Rally users who want to manage outreach independently.</div>
+            <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#4B6BFB;margin:20px 0 4px;">Permissions</div>
+            <div style="display:flex;flex-direction:column;">
+              <div style="padding:12px 0;border-bottom:1px solid var(--border);"><strong>Private List</strong><br><span style="font-size:13px;color:var(--text-secondary);">Your own customer lists that you upload into Rally to conduct calls and research with</span></div>
+              <div style="padding:12px 0;border-bottom:1px solid var(--border);"><strong>Rally Opted-in Database</strong><br><span style="font-size:13px;color:var(--text-secondary);">You will not have access to the Rally Opted-in Database</span></div>
+              <div style="padding:12px 0;border-bottom:1px solid var(--border);"><strong>List Visibility</strong><br><span style="font-size:13px;color:var(--text-secondary);">These lists can only be viewed, accessed, and edited by the list owner</span></div>
+            </div>
+            <div class="role-path-cta">View Private workflow →</div>
+          </a>
+
+          <a href="#outreach-shared" class="role-path-card">
+            <div style="font-size:20px;font-weight:700;color:var(--text);line-height:1.2;">Shared</div>
+            <div style="font-size:14px;color:var(--text-secondary);margin-top:4px;">Rally users who want access to a broader shared pool.</div>
+            <div style="font-size:11px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:#15803D;margin:20px 0 4px;">Permissions</div>
+            <div style="display:flex;flex-direction:column;">
+              <div style="padding:12px 0;border-bottom:1px solid var(--border);"><strong>Private List</strong><br><span style="font-size:13px;color:var(--text-secondary);">No access to private lists</span></div>
+              <div style="padding:12px 0;border-bottom:1px solid var(--border);"><strong>Shared List</strong><br><span style="font-size:13px;color:var(--text-secondary);">A customer pool shared across Rally users</span></div>
+              <div style="padding:12px 0;border-bottom:1px solid var(--border);"><strong>Research Program</strong><br><span style="font-size:13px;color:var(--text-secondary);">Opt-in research participants (incentivized)</span></div>
+            </div>
+            <div class="role-path-cta">View Shared workflow →</div>
+          </a>
+        </div>
+
+        <div style="margin-top:16px;border:1px solid var(--border);border-radius:10px;padding:14px 16px;background:var(--white);">
+          <div style="font-size:14px;color:var(--text-secondary);"><strong>Note:</strong> You can update your role later in your account settings to be able to conduct both Private + Shared research in Rally.</div>
+        </div>
+      </div>
+
+      <div class="content-section">
+        <div class="workflow-label" style="margin-top:52px;">Onboarding</div>
+        <h2 class="section-heading">Getting Started: 4-Step Onboarding</h2>
+        <p class="section-subheading" style="font-weight:700;">Complete these steps in order. Product Operations will guide you through the process.</p>
+
+        <div class="steps-wrapper">
+          <div class="step-block">
+            <div class="step-header"><div class="step-number">1</div><div><div class="step-title">Request Rally Access</div></div></div>
+            <div class="step-body">
+              <p>Submit an <strong><a href="https://procoretech.atlassian.net/servicedesk/customer/portal/38/group/108/create/5717" target="_blank">IT ticket</a></strong> to request your Rally login. If unsure which request type to use, ask in <strong><a href="https://app.slack.com/client/T024H0HN2/#rally" target="_blank">#rally</a></strong> on Slack.</p>
+              <div class="callout best-practice"><div class="callout-icon">✓</div><div><div class="callout-label">Outcome</div><p class="callout-text">You'll receive a Rally invite via email once access is approved.</p></div></div>
+            </div>
+          </div>
+
+          <div class="step-block">
+            <div class="step-header"><div class="step-number">2</div><div><div class="step-title">Prepare and Submit Your Customer List</div></div></div>
+            <div class="step-body">
+              <p>Prepare your customer list using the <strong><a href="https://docs.google.com/spreadsheets/d/1QwcibcmJnZmhJJpFzbvWbD-mEiJuO66aSzgxkc2sZa4/copy" target="_blank">Rally Import List template</a></strong>. The template link will prompt you to create your own copy automatically.</p>
+              <div class="step-action-label">What to do</div>
+              <ol class="step-instructions">
+                <li>Click the template link and create your own copy.</li>
+                <li>Add your customers and include the required details, including Account ID.</li>
+                <li>Choose your list type: <strong>Private List</strong> or <strong>Shared List</strong>.</li>
+                <li>Post in <strong><a href="https://app.slack.com/client/T024H0HN2/#rally" target="_blank">#rally</a></strong> when your list is ready to upload.</li>
+                <li>Product Operations will follow up in Slack with next steps.</li>
+              </ol>
+            </div>
+          </div>
+
+          <div class="step-block">
+            <div class="step-header"><div class="step-number">3</div><div><div class="step-title">Attend Your Setup Session</div></div></div>
+            <div class="step-body">
+              <p>Once your access is approved and list is uploaded, Product Operations will schedule a setup session with you. During this session, you'll connect your tools and verify your participant list is loaded correctly.</p>
+            </div>
+          </div>
+
+          <div class="workflow-label">First Login</div>
+
+          <div class="step-block">
+            <div class="step-header"><div class="step-number">4</div><div style="flex:1;"><div class="step-title">Connect Your Tools (One-Time Setup)</div></div></div>
+            <div class="step-body">
+              <p>During your setup session, you'll connect Gmail, Google Calendar, and Zoom together with Product Operations. Once connected, they'll stay active for future studies — this is a one-time step.</p>
+              <div class="step-action-label">What to do</div>
+              <ul class="step-instructions">
+                <li>Hover over your workspace name in the top left corner and click <strong>Settings</strong></li>
+                <li>Select <strong>User &gt; Connected Accounts</strong></li>
+                <li>Connect <strong>Google</strong> (Gmail + Calendar) and <strong>Zoom</strong></li>
+              </ul>
+              <div class="callout best-practice"><div class="callout-icon">✓</div><div><div class="callout-label">You're all set</div><p class="callout-text">Start sourcing and scheduling your first study!</p></div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="chapter-end">
+          <div class="chapter-end-label">Setup Complete</div>
+          <h3 class="chapter-end-heading">You're ready to start using Rally.</h3>
+          <p class="chapter-end-desc">You've finished onboarding. From here, you'll use Rally to schedule and run customer calls on a repeating basis.</p>
+          <a href="#outreach" class="chapter-end-btn">Next: Rally Outreach and Scheduling →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="outreach" class="page-section">
+    <div class="panel-inner">
+      <div class="content-section">
+        <div class="chapter-header">
+          <div class="chapter-header-label">Part 2</div>
+          <h2 class="chapter-header-heading">Rally Outreach and Scheduling</h2>
+          <p class="chapter-header-desc">Now that you've completed Part 1, you're set up in Rally and connected to Zoom and Google Calendar. The steps below are the repeating workflow you'll run every time you launch a new round of customer calls. Both Private (your own customer list) and Shared (verified pool / research program) paths are covered — pick the one that matches the IT ticket you submitted.</p>
+        </div>
+
+        <div class="callout tip" style="margin-bottom:28px;">
+          <div class="callout-icon">i</div>
+          <div>
+            <div class="callout-label">Before you start</div>
+            <p class="callout-text">If this is your first study, Product Operations will walk through this section with you live during your setup session — you don't have to figure it out alone. Returning users can run through these steps independently.</p>
+          </div>
+        </div>
+
+        <div id="outreach-private" class="workflow-label">Private List Workflow</div>
+
+        <div class="steps-wrapper">
+          <div class="step-block">
+            <div class="step-header"><div class="step-number">1</div><div><div class="step-title">Set up your study for the first time</div><div class="step-subtitle">Rally lets you reuse your customer list by duplicating a previous study, so you don't have to start from scratch each round.</div></div></div>
+            <div class="step-body">
+              <p>Rather than starting from scratch, duplicate a past study to carry your customer list forward.</p>
+              <div class="step-action-label">What to do</div>
+              <ul class="step-instructions">
+                <li>In the left sidebar, click <strong>Studies</strong></li>
+                <li>Check the box next to the study you want to duplicate</li>
+                <li>Click <strong>Duplicate</strong> in the toolbar</li>
+                <li>When the duplicate modal opens, pause before clicking <strong>Duplicate study</strong></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="step-block critical-step">
+            <div class="step-header"><div class="step-number">!</div><div><div class="step-title">Critical — keep your participants when you duplicate</div><div class="step-subtitle">This is the one duplicate-setting that prevents a full manual re-import.</div></div></div>
+            <div class="step-body">
+              <p>When the duplicate modal opens, always check <strong>"Include participants"</strong> before clicking <strong>Duplicate study</strong>. If you skip this, your customer list will not transfer and you'll have to re-import the entire list manually.</p>
+            </div>
+          </div>
+
+          <div class="step-block">
+            <div class="step-header"><div class="step-number">2</div><div><div class="step-title">Update Your Study</div><div class="step-subtitle">Review and edit your study details before launching.</div></div></div>
+            <div class="step-body">
+              <p>Update the study name, scope, and session details as needed. If you need to add more customers to your list, send the updated list to <strong>Sophia Nitti or Emanuel Ruiz-Lebrón</strong> before you launch.</p>
+              <div class="step-action-label">What to do</div>
+              <ul class="step-instructions">
+                <li>Update <strong>study details</strong> as needed (name, session length, dates)</li>
+                <li>Review and update <strong>messages</strong> for this round of outreach</li>
+                <li>To add more customers: send them to <strong>Sophia Nitti or Emanuel Ruiz-Lebrón</strong> and they will add them to your study</li>
+              </ul>
+              <div class="callout tip">
+                <div class="callout-icon">i</div>
+                <div>
+                  <div class="callout-label">Templates are already built for you</div>
+                  <p class="callout-text">Rally ships with prebuilt outreach and reminder templates. You don't need to write messages from scratch — open the Messages tab inside your study, edit the prefilled copy to match this round's scope, and save.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="step-block">
+            <div class="step-header"><div class="step-number">3</div><div><div class="step-title">Launch and Schedule Your Calls</div><div class="step-subtitle">Send outreach to your customer list and schedule calls through Rally.</div></div></div>
+            <div class="step-body">
+              <p>Once everything is ready, send your outreach and let Rally handle the scheduling. Customers will receive an invitation and can book directly from the link.</p>
+              <div class="step-action-label">What to do</div>
+              <ul class="step-instructions">
+                <li>Review the study one final time: confirm details, messages, and participant list</li>
+                <li>Click <strong>Send Outreach</strong> to launch</li>
+                <li>Monitor responses and bookings in Rally as they come in</li>
+              </ul>
+              <div class="callout help">
+                <div class="callout-icon">?</div>
+                <div>
+                  <div class="callout-label">Need Help?</div>
+                  <ul class="support-list">
+                    <li><strong>Quick questions:</strong> Post in <a href="https://app.slack.com/client/T024H0HN2/#rally" target="_blank">#rally</a> on Slack.</li>
+                    <li><strong>Rally Office Hours:</strong> Thursdays, 11 AM PDT — platform questions, troubleshooting, and best practices.</li>
+                    <li><strong>Emanuel's Office Hours:</strong> Mondays &amp; Wednesdays, 12:30 PM PST — list workflow and setup questions.</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div id="outreach-shared" class="workflow-label" style="margin-top:48px;">Shared / Verified Pool Workflow</div>
+        <div class="workflow-note">
+          <div class="workflow-note-title">Shared workflow content needs the Confluence source</div>
+          <p class="workflow-note-text">Sophia flagged that this path should come from the older Rally documentation rather than being rewritten from scratch. The structure below is ready for that source content once the Confluence page is identified.</p>
+        </div>
+
+        <div class="steps-wrapper">
+          <!-- TODO: Replace this section with Shared / Verified Pool workflow copy from the source Confluence Rally docs. -->
+          <div class="step-block">
+            <div class="step-header"><div class="step-number">1</div><div><div class="step-title">Start a Shared or Verified Pool study</div><div class="step-subtitle">Use this path when your IT ticket requested access to the shared pool or research program.</div></div></div>
+            <div class="step-body">
+              <p>Create the study using the shared participant source instead of duplicating a private customer list.</p>
+            </div>
+          </div>
+
+          <div class="step-block">
+            <div class="step-header"><div class="step-number">2</div><div><div class="step-title">Select your audience</div><div class="step-subtitle">Choose the customer segment, verified pool, or research program criteria for this study.</div></div></div>
+            <div class="step-body">
+              <p>Use the Rally guidance from the shared workflow source to define filters, eligibility, and participant criteria.</p>
+            </div>
+          </div>
+
+          <div class="step-block">
+            <div class="step-header"><div class="step-number">3</div><div><div class="step-title">Configure incentives and outreach</div><div class="step-subtitle">Shared research may include research program participants and incentives.</div></div></div>
+            <div class="step-body">
+              <p>Confirm incentive handling, review the prebuilt Rally message templates, and customize outreach for this round.</p>
+            </div>
+          </div>
+
+          <div class="step-block">
+            <div class="step-header"><div class="step-number">4</div><div><div class="step-title">Launch and monitor scheduling</div><div class="step-subtitle">Send outreach and track responses, bookings, confirmations, and no-shows in Rally.</div></div></div>
+            <div class="step-body">
+              <p>After launch, monitor participant status in Rally and use office hours or the #rally Slack channel if anything looks off.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="help" class="page-section section-white">
+    <div class="panel-inner">
+      <div class="content-section">
+        <div class="section-anchor-label">Resources</div>
+        <h2 class="section-heading">Help Center</h2>
+        <p class="section-subheading">Three ways to get help. Pick whichever fits your situation.</p>
+
+        <div class="help-grid">
+          <a href="https://app.rallyuxr.com/auth/workspaces" class="help-card" target="_blank">
+            <div class="help-card-icon">↗</div>
+            <div class="help-card-title">Open Rally</div>
+            <div class="help-card-desc">Manage your outreach, scheduling, and customer calls.</div>
+          </a>
+          <a href="#" class="help-card" target="_blank">
+            <div class="help-card-icon">?</div>
+            <div class="help-card-title">Rally Help Center</div>
+            <div class="help-card-desc">Guides, help articles, and platform documentation.</div>
+          </a>
+          <a href="https://app.slack.com/client/T024H0HN2/#rally" class="help-card" target="_blank">
+            <div class="help-card-icon">#</div>
+            <div class="help-card-title">#rally on Slack</div>
+            <div class="help-card-desc">Quick questions, updates, and support from the team.</div>
+          </a>
+        </div>
+
+        <h3 style="font-size:17px;font-weight:700;color:var(--text);margin-bottom:16px;letter-spacing:-0.01em;">Office Hours</h3>
+        <div class="oh-grid">
+          <div class="oh-card">
+            <div class="oh-card-title">Rally Office Hours</div>
+            <div class="oh-card-meta">
+              Platform questions, troubleshooting, and best practices.<br><br>
+              <strong>Day:</strong> Thursdays<br>
+              <strong>Time:</strong> 11:00 AM PDT &nbsp;|&nbsp; 1:00 PM CDT &nbsp;|&nbsp; 2:00 PM EDT
+            </div>
+            <a href="https://procore.zoom.us/j/94393456026?pwd=ef6pljJdK3ZFxMgoqV201DCUrEJm7h.1&amp;jst=2" class="oh-link" target="_blank">Join Zoom</a>
+          </div>
+          <div class="oh-card">
+            <div class="oh-card-title">Emanuel's Office Hours</div>
+            <div class="oh-card-meta">
+              List workflow, setup questions, and general guidance.<br><br>
+              <strong>Days:</strong> Every Monday &amp; Wednesday<br>
+              <strong>Time:</strong> 12:30 PM PST &nbsp;|&nbsp; 2:30 PM CST &nbsp;|&nbsp; 3:30 PM EST
+            </div>
+            <a href="https://procore.zoom.us/j/94502403365?pwd=2bkncx2SFVR7Ja9qbdhDrOSEEu793C.1" class="oh-link" target="_blank">Join Zoom</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Product Operations &middot; Procore &middot; Updated April 2026</p>
+    <div class="footer-links">
+      <a href="https://app.slack.com/client/T024H0HN2/#rally" target="_blank">#rally on Slack</a>
+      <a href="https://procore.zoom.us/j/94393456026?pwd=ef6pljJdK3ZFxMgoqV201DCUrEJm7h.1&amp;jst=2" target="_blank">Office Hours</a>
+    </div>
+  </footer>
+</div>
+
+<script>
+  const sections = document.querySelectorAll('.page-section');
+  const navLinks = document.querySelectorAll('a.tab-btn');
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        navLinks.forEach(l => l.classList.remove('active'));
+        const active = document.querySelector(`a.tab-btn[href="#${entry.target.id}"]`);
+        if (active) active.classList.add('active');
+      }
+    });
+  }, { rootMargin: '-15% 0px -70% 0px' });
+
+  sections.forEach(s => observer.observe(s));
+</script>
+
+</body>
+</html>
