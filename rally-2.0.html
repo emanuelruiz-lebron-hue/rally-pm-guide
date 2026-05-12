@@ -243,6 +243,34 @@
   .step-instructions li strong { font-weight: 600; color: var(--text); }
   .step-instructions a { color: var(--orange); font-weight: 500; }
 
+  .guide-video {
+    margin: 18px 0 20px;
+  }
+  .guide-video-frame {
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--bg2);
+    aspect-ratio: 16 / 9;
+  }
+  .guide-video-frame video {
+    width: 100%;
+    height: 100%;
+    display: block;
+    border: 0;
+  }
+  .guide-video-fallback {
+    margin-top: 8px;
+    font-size: 13px;
+    font-weight: 400;
+  }
+  .guide-video-fallback a {
+    color: var(--orange);
+    font-weight: 600;
+    text-decoration: none;
+  }
+  .guide-video-fallback a:hover { text-decoration: underline; }
+
   .callout {
     display: flex; gap: 12px; padding: 14px 16px;
     border-radius: 9px; margin-top: 16px;
@@ -678,6 +706,15 @@
             <div class="step-header"><div class="step-number">4</div><div style="flex:1;"><div class="step-title">Complete Your Profile and Connect Your Tools</div></div></div>
             <div class="step-body">
               <p>Before creating your first study, finish your Rally profile, connect your tools, and set your interview availability. Rally uses these settings to send outreach and schedule sessions correctly.</p>
+              <div class="guide-video">
+                <div class="guide-video-frame">
+                  <video controls preload="metadata" aria-label="Rally profile and connected tools setup walkthrough">
+                    <source src="assets/videos/rally-profile-tools-setup.mp4" type="video/mp4">
+                    <a href="assets/videos/rally-profile-tools-setup.mp4">Open the Rally profile and connected tools setup walkthrough</a>
+                  </video>
+                </div>
+                <p class="guide-video-fallback"><a href="assets/videos/rally-profile-tools-setup.mp4" target="_blank" rel="noopener">Open walkthrough video</a></p>
+              </div>
               <div class="step-action-label">What to do</div>
               <ul class="step-instructions">
                 <li>In the top left corner, hover over <strong>Procore Technologies</strong> and select <strong>Settings</strong></li>
@@ -688,16 +725,6 @@
                 <li>Choose how Rally should handle calendar conflicts</li>
                 <li>Click <strong>Save</strong></li>
               </ul>
-              <div style="margin-top:16px;display:flex;flex-direction:column;gap:12px;">
-                <div style="border:1px solid rgba(0,0,0,0.08);border-radius:10px;overflow:hidden;">
-                  <div style="padding:7px 12px;background:#F5F5F5;border-bottom:1px solid rgba(0,0,0,0.06);font-size:11px;font-weight:600;color:#999;letter-spacing:0.06em;text-transform:uppercase;">Hover over Procore Technologies in the top left, then select Settings</div>
-                  <img src="rally-home.png" alt="Rally home screen: hover over Procore Technologies in the top left to reveal Settings" style="width:100%;display:block;">
-                </div>
-                <div style="border:1px solid rgba(0,0,0,0.08);border-radius:10px;overflow:hidden;">
-                  <div style="padding:7px 12px;background:#F5F5F5;border-bottom:1px solid rgba(0,0,0,0.06);font-size:11px;font-weight:600;color:#999;letter-spacing:0.06em;text-transform:uppercase;">Connected Accounts: connect Google and Zoom</div>
-                  <img src="rally-connected-accounts.png" alt="Settings &gt; User &gt; Connected Accounts with Google and Zoom highlighted" style="width:100%;display:block;">
-                </div>
-              </div>
             </div>
           </div>
         </div>
