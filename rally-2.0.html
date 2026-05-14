@@ -261,11 +261,21 @@
     flex-shrink: 0;
     border-radius: 9px;
     background: linear-gradient(135deg, #1A1A1A, #555555);
+    position: relative;
+    overflow: hidden;
     display: flex;
     align-items: center;
     justify-content: center;
     color: var(--white);
     box-shadow: inset 0 0 0 1px rgba(255,255,255,0.18);
+  }
+  .video-preview-thumb img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
   }
   .video-play-icon {
     width: 46px;
@@ -277,6 +287,9 @@
     justify-content: center;
     font-size: 20px;
     line-height: 1;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.22);
   }
   .video-preview-copy { flex: 1; min-width: 0; }
   .video-preview-label {
@@ -873,9 +886,10 @@
               <p>Before creating your first study, finish your Rally profile, connect your tools, and set your interview availability. Rally uses these settings to send outreach and schedule sessions correctly.</p>
               <div class="guide-video">
                 <button class="video-preview-button" type="button" data-video-open aria-haspopup="dialog" aria-controls="profile-tools-video-modal">
-                  <span class="video-preview-thumb" aria-hidden="true">
-                    <span class="video-play-icon">&#9658;</span>
-                  </span>
+	                  <span class="video-preview-thumb" aria-hidden="true">
+	                    <img src="assets/videos/rally-profile-tools-setup-poster.png" alt="">
+	                    <span class="video-play-icon">&#9658;</span>
+	                  </span>
                   <span class="video-preview-copy">
                     <span class="video-preview-label">Video walkthrough</span>
                     <span class="video-preview-title">Profile and connected tools setup</span>
@@ -1176,7 +1190,7 @@
       <button class="video-modal-close" type="button" data-video-close aria-label="Close walkthrough video">&times;</button>
     </div>
     <div class="video-modal-frame">
-      <video id="profile-tools-video-player" controls preload="metadata" aria-label="Rally profile and connected tools setup walkthrough">
+      <video id="profile-tools-video-player" controls preload="metadata" poster="assets/videos/rally-profile-tools-setup-poster.png" aria-label="Rally profile and connected tools setup walkthrough">
         <source src="assets/videos/rally-profile-tools-setup.mp4" type="video/mp4">
         <a href="assets/videos/rally-profile-tools-setup.mp4">Open the Rally profile and connected tools setup walkthrough</a>
       </video>
