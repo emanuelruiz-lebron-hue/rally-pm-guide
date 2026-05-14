@@ -98,7 +98,7 @@
   }
 
   /* ---- CHAPTER VISIBILITY ---- */
-  .chapter { display: none; }
+  .chapter { display: none; scroll-margin-top: calc(var(--nav-height) + var(--tab-height)); }
   .chapter.active { display: block; }
 
   .chapter.section-white {
@@ -869,7 +869,7 @@
   <div id="onboarding" class="chapter">
     <div class="panel-inner">
 
-      <button type="button" class="chapter-back" data-chapter-go="overview">← Overview</button>
+      <button type="button" class="chapter-back" data-chapter-go="overview">← Get to Know Rally</button>
 
       <div class="chapter-header">
         <div class="chapter-header-label">Onboarding</div>
@@ -955,7 +955,7 @@
   <div id="workflows" class="chapter">
     <div class="panel-inner">
 
-      <button type="button" class="chapter-back" data-chapter-go="onboarding">← Onboarding</button>
+      <button type="button" class="chapter-back" data-chapter-go="onboarding">← First-Time Setup</button>
 
       <div class="chapter-header">
         <div class="chapter-header-label">Workflow</div>
@@ -1215,7 +1215,7 @@
         </div>
 
         <div style="margin-top:32px;padding-top:24px;border-top:1px solid var(--border);">
-          <button type="button" class="chapter-back" data-chapter-go="overview">← Back to Overview</button>
+          <button type="button" class="chapter-back" data-chapter-go="overview">← Back to Get to Know Rally</button>
         </div>
       </div>
 
@@ -1260,7 +1260,8 @@
       tab.classList.toggle('active', tab.dataset.chapter === id);
     });
     history.pushState(null, '', '#' + id);
-    window.scrollTo(0, 0);
+    var navOffset = document.querySelector('.top-nav').offsetHeight + document.querySelector('.tab-bar').offsetHeight;
+    window.scrollTo({ top: Math.max(0, target.offsetTop - navOffset), behavior: 'instant' });
   }
 
   document.querySelectorAll('a.tab-btn[data-chapter]').forEach(function(tab) {
@@ -1283,7 +1284,10 @@
   });
 
   var initHash = window.location.hash.replace('#', '');
-  showChapter(CHAPTERS.includes(initHash) ? initHash : 'overview');
+  var initId = CHAPTERS.includes(initHash) ? initHash : 'overview';
+  // Show chapter immediately, then re-scroll after browser's hash navigation settles
+  showChapter(initId);
+  setTimeout(function() { showChapter(initId); }, 50);
 
   // ---- WORKFLOW TABS ----
   function setWorkflow(workflow) {
