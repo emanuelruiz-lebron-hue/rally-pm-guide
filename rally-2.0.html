@@ -155,42 +155,21 @@
     line-height: 1.7; margin-bottom: 24px; max-width: 640px;
   }
   .section-divider { border: none; border-top: 1px solid var(--border); margin: 52px 0; }
-  .comparison-grid {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 14px;
+  .value-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px;
     align-items: start; margin-top: 24px;
   }
-  .comparison-card {
+  .value-card {
     border: 1px solid var(--border); border-radius: 12px;
     padding: 20px 22px; background: var(--white);
   }
-  .comparison-card.with {
-    background: var(--orange-dim2);
-    border-color: rgba(255,82,0,0.18);
-  }
-  .comparison-title {
+  .value-card-title {
     font-size: 13px; font-weight: 700; color: var(--text);
-    margin-bottom: 14px;
+    margin-bottom: 8px;
   }
-  .comparison-card.with .comparison-title { color: var(--orange); }
-  .comparison-list {
-    list-style: disc; padding-left: 18px; margin: 0;
-    display: flex; flex-direction: column; gap: 8px;
-  }
-  .comparison-list.compact { gap: 6px; }
-  .comparison-list li {
+  .value-card-copy {
     font-size: 16px; font-weight: 300; color: var(--text-secondary);
-    line-height: 1.5;
-  }
-  .comparison-group {
-    padding-top: 14px; margin-top: 14px;
-    border-top: 1px solid rgba(255,82,0,0.12);
-  }
-  .comparison-group:first-of-type {
-    padding-top: 0; margin-top: 0; border-top: none;
-  }
-  .comparison-group-label {
-    font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
-    color: var(--text-light); margin-bottom: 8px;
+    line-height: 1.55;
   }
 
   .steps-wrapper {
@@ -301,6 +280,7 @@
   }
   .video-preview-copy { flex: 1; min-width: 0; }
   .video-preview-label {
+    display: block;
     font-size: 10px;
     font-weight: 700;
     letter-spacing: 0.12em;
@@ -309,18 +289,58 @@
     margin-bottom: 4px;
   }
   .video-preview-title {
+    display: block;
     font-size: 17px;
     font-weight: 700;
     color: var(--text);
     line-height: 1.3;
   }
   .video-preview-desc {
+    display: block;
     font-size: 14px;
     font-weight: 300;
     color: var(--text-secondary);
     line-height: 1.45;
     margin-top: 3px;
   }
+  .loom-placeholder {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 14px;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    background: var(--white);
+    font-family: 'Inter Tight', sans-serif;
+    text-align: left;
+    margin: 22px 0 24px;
+  }
+  .loom-placeholder-thumb {
+    width: 220px;
+    aspect-ratio: 16 / 9;
+    flex-shrink: 0;
+    border-radius: 9px;
+    background: #F3F3F3;
+    border: 1px dashed rgba(0,0,0,0.14);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--orange);
+  }
+  .loom-placeholder-play {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 2px solid rgba(255,82,0,0.36);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    line-height: 1;
+    background: var(--white);
+  }
+  .loom-placeholder-copy { flex: 1; min-width: 0; }
   .video-modal {
     position: fixed;
     inset: 0;
@@ -391,8 +411,12 @@
       align-items: flex-start;
       flex-direction: column;
     }
-    .video-preview-thumb {
+    .video-preview-thumb, .loom-placeholder-thumb {
       width: 100%;
+    }
+    .loom-placeholder {
+      align-items: flex-start;
+      flex-direction: column;
     }
     .video-modal {
       padding: 14px;
@@ -452,6 +476,21 @@
   .role-path-desc {
     font-size: 16px; font-weight: 300; color: var(--text-secondary);
     line-height: 1.55; margin-bottom: 20px;
+  }
+  .role-value {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 9px;
+    padding: 12px 14px;
+    margin-bottom: 18px;
+  }
+  .role-value-label {
+    font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+    color: var(--text-light); margin-bottom: 4px;
+  }
+  .role-value-copy {
+    font-size: 16px; font-weight: 300; color: var(--text-secondary);
+    line-height: 1.55;
   }
   .role-permission-label {
     font-size: 11px; font-weight: 700; letter-spacing: 0.09em; text-transform: uppercase;
@@ -649,7 +688,7 @@
     a.tab-btn { font-size: 14px; padding: 0 10px; }
     .panel-inner { padding: 40px 18px 56px; }
     .doc-title { font-size: 28px; }
-    .comparison-grid, .role-choice-grid, .oh-grid { grid-template-columns: 1fr !important; }
+    .value-grid, .role-choice-grid, .oh-grid { grid-template-columns: 1fr !important; }
     .workflow-selector { display: flex; width: 100%; }
     .workflow-tab { flex: 1; padding: 0 10px; }
     .step-header { padding: 18px; }
@@ -687,7 +726,7 @@
           <span class="doc-system-badge">Rally</span>
         </div>
         <h1 class="doc-title">Rally 2.0 Guide</h1>
-        <p class="doc-description">Streamline recruitment, scheduling, and follow-up. Save hours and run better research sessions.</p>
+        <p class="doc-description">Streamline outreach, scheduling, and follow-up. Save hours and run better customer insight sessions.</p>
         <div class="doc-meta-grid">
           <div class="doc-meta-item">
             <div class="doc-meta-label">Setup Time</div>
@@ -699,45 +738,31 @@
       <div class="content-section">
         <div class="section-anchor-label">Overview</div>
         <h2 class="section-heading">What is Rally?</h2>
-        <p class="section-subheading">Rally is your all-in-one platform for sourcing, scheduling, tracking, and incentivizing participant research. Stop managing spreadsheets and manual follow-ups. Automate the logistics so you can focus on insights.</p>
+        <p class="section-subheading">Rally helps PMs source customers, schedule calls, track outreach, and manage follow-up from one place so you can spend more time on customer insights.</p>
 
-        <div class="comparison-grid">
-          <div class="comparison-card">
-            <div class="comparison-title">Without Rally</div>
-            <ul class="comparison-list">
-              <li>Contacts are scattered across spreadsheets</li>
-              <li>Scheduling conflicts and manual booking back-and-forth</li>
-              <li>Follow up reminders slip through the cracks</li>
-              <li>No real-time visibility into participant status or no-show rates</li>
-              <li>Multiple point solutions needed to achieve your research goals</li>
-            </ul>
+        <div class="value-grid">
+          <div class="value-card">
+            <div class="value-card-title">Centralized customer insights</div>
+            <p class="value-card-copy">Keep contacts, responses, bookings, and participant status together in one Rally dashboard.</p>
           </div>
-          <div class="comparison-card with">
-            <div class="comparison-title">With Rally</div>
-            <div class="comparison-group">
-              <div class="comparison-group-label">Centralized tracking</div>
-              <ul class="comparison-list compact">
-                <li>All contacts, responses, and bookings in one centralized dashboard</li>
-                <li>Real-time tracking of confirmations and no-show rates</li>
-                <li>Source, schedule, and manage participants from a single dashboard</li>
-              </ul>
-            </div>
-            <div class="comparison-group">
-              <div class="comparison-group-label">Automated scheduling</div>
-              <ul class="comparison-list compact">
-                <li>Customers self-schedule via a single booking link with no back-and-forth</li>
-                <li>Automated reminders and follow-ups for no-shows</li>
-                <li>Schedule calls via Gmail, Google Calendar, and Zoom integrations</li>
-              </ul>
-            </div>
-            <div class="comparison-group">
-              <div class="comparison-group-label">Reusable workflows</div>
-              <ul class="comparison-list compact">
-                <li>Send outreach directly through approved Procore templates and workflows</li>
-                <li>Invite teammates to join calls as observers</li>
-                <li>Reuse participant lists by duplicating past studies</li>
-              </ul>
-            </div>
+          <div class="value-card">
+            <div class="value-card-title">Simpler scheduling</div>
+            <p class="value-card-copy">Let customers book from one link while Rally handles reminders, calendar sync, and follow-up.</p>
+          </div>
+          <div class="value-card">
+            <div class="value-card-title">Reusable outreach workflows</div>
+            <p class="value-card-copy">Start from approved templates, reuse past work, and invite teammates to observe customer calls.</p>
+          </div>
+        </div>
+
+        <div class="loom-placeholder" aria-label="Loom walkthrough placeholder for choosing your Rally path">
+          <div class="loom-placeholder-thumb" aria-hidden="true">
+            <div class="loom-placeholder-play">&#9658;</div>
+          </div>
+          <div class="loom-placeholder-copy">
+            <div class="video-preview-label">Loom walkthrough coming soon</div>
+            <div class="video-preview-title">Choosing your Rally path</div>
+            <div class="video-preview-desc">A short walkthrough will explain what Rally does and how to choose Private or Shared.</div>
           </div>
         </div>
       </div>
@@ -747,53 +772,61 @@
       <div class="content-section">
         <div class="section-anchor-label">Getting Started</div>
         <h2 class="section-heading">Your Role and Permissions</h2>
-        <p class="section-subheading">There are two ways to work in Rally. Your role determines your workflow in the platform and your permissions within it.</p>
-        <p class="role-selection-helper">Review the role details below, then complete onboarding. In the Rally Outreach and Scheduling section, use the workflow that matches your role.</p>
+        <p class="section-subheading">There are two ways to work in Rally. Choose the path that matches how you want to source customers for your calls.</p>
+        <p class="role-selection-helper">Both paths help you centralize outreach, scheduling, reminders, and tracking. The main difference is whether you bring your own customer list or use customers already available in Rally.</p>
 
         <div class="role-choice-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px;">
           <div class="role-path-card private">
             <div class="role-path-title">Private</div>
-            <div class="role-path-desc">Rally users who want to manage outreach independently.</div>
+            <div class="role-path-desc">For PMs who already have a specific customer list and want to manage outreach in their own Rally workspace.</div>
+            <div class="role-value">
+              <div class="role-value-label">Why use this path</div>
+              <div class="role-value-copy">Bring your customer list into Rally so the calls, reminders, scheduling, and response tracking happen in one place.</div>
+            </div>
             <div class="role-permission-label">Permissions</div>
             <div class="role-permission-list">
               <div class="role-permission-row">
-                <div class="role-permission-name">Private List</div>
-                <div class="role-permission-copy">Your own customer lists that you upload into Rally to conduct calls and research with</div>
+                <div class="role-permission-name">Customer Source</div>
+                <div class="role-permission-copy">Your own customer lists uploaded into Rally for customer calls and insights</div>
               </div>
               <div class="role-permission-row">
-                <div class="role-permission-name">No access to Rally Opted-In Database</div>
-                <div class="role-permission-copy">You will not have access to the Rally Opted-In Database</div>
+                <div class="role-permission-name">PM-Owned Customers</div>
+                <div class="role-permission-copy">Best when you want to stay focused on customers you already know or have already identified</div>
               </div>
               <div class="role-permission-row">
                 <div class="role-permission-name">List Visibility</div>
-                <div class="role-permission-copy">These lists can only be viewed, accessed, and edited by the list owner</div>
+                <div class="role-permission-copy">Lists can only be viewed, accessed, and edited by the list owner</div>
               </div>
             </div>
           </div>
 
           <div class="role-path-card shared">
             <div class="role-path-title">Shared</div>
-            <div class="role-path-desc">Rally users who want access to a broader shared pool.</div>
+            <div class="role-path-desc">For PMs who want to contribute customer lists to a shared Rally pool and use customer lists shared by other PMs.</div>
+            <div class="role-value">
+              <div class="role-value-label">Why use this path</div>
+              <div class="role-value-copy">Build a stronger shared customer pool with other PMs. Adding your customer lists improves visibility into outreach, shows which initiatives customers have participated in, and helps teams coordinate better.</div>
+            </div>
             <div class="role-permission-label">Permissions</div>
             <div class="role-permission-list">
               <div class="role-permission-row">
-                <div class="role-permission-name">Private List</div>
-                <div class="role-permission-copy">No access to private lists</div>
+                <div class="role-permission-name">Customer Source</div>
+                <div class="role-permission-copy">Bring customer lists into Rally so they can be shared across PMs</div>
               </div>
               <div class="role-permission-row">
                 <div class="role-permission-name">Shared List</div>
-                <div class="role-permission-copy">A customer pool shared across Rally users</div>
+                <div class="role-permission-copy">Access customers contributed by other PMs and add relevant participants to your own studies</div>
               </div>
               <div class="role-permission-row">
-                <div class="role-permission-name">Research Program</div>
-                <div class="role-permission-copy">Opt-in research participants (incentivized)</div>
+                <div class="role-permission-name">Customer Visibility</div>
+                <div class="role-permission-copy">See more context about customer participation across PM initiatives</div>
               </div>
             </div>
           </div>
         </div>
 
         <div style="margin-top:16px;border:1px solid var(--border);border-radius:10px;padding:14px 16px;background:var(--white);">
-          <div style="font-size:16px;line-height:1.6;color:var(--text-secondary);"><strong>Note:</strong> You can update your role later in your account settings to be able to conduct both Private + Shared research in Rally.</div>
+          <div style="font-size:16px;line-height:1.6;color:var(--text-secondary);"><strong>Note:</strong> You can update your role later in your account settings if you need to work with both Private and Shared customer sources.</div>
         </div>
       </div>
 
@@ -845,6 +878,8 @@
                   </span>
                   <span class="video-preview-copy">
                     <span class="video-preview-label">Video walkthrough</span>
+                    <span class="video-preview-title">Profile and connected tools setup</span>
+                    <span class="video-preview-desc">Watch the current setup walkthrough for your Rally profile, Google, Zoom, and availability.</span>
                   </span>
                 </button>
                 <p class="guide-video-fallback"><a href="assets/videos/rally-profile-tools-setup.mp4" target="_blank" rel="noopener">Open video in a new tab</a></p>
@@ -866,7 +901,7 @@
         <div class="chapter-end">
           <div class="chapter-end-label">Setup complete</div>
           <h3 class="chapter-end-heading">Next: Rally Outreach and Scheduling</h3>
-          <p class="chapter-end-desc">You've finished onboarding. In the next section, choose the Private or Shared workflow that matches your Rally role.</p>
+          <p class="chapter-end-desc">You've finished onboarding. In the next section, choose the Private or Shared workflow that matches your customer source.</p>
           <a href="#workflow-selector" class="chapter-end-btn">Choose Private or Shared</a>
         </div>
       </div>
@@ -879,14 +914,25 @@
         <div class="chapter-header">
           <div class="chapter-header-label">Workflow</div>
           <h2 class="chapter-header-heading">Rally Outreach and Scheduling</h2>
-          <p class="chapter-header-desc">After onboarding is complete, use this section to prepare, launch, and monitor your customer outreach in Rally. Choose the workflow below that matches your Rally role:</p>
+          <p class="chapter-header-desc">After onboarding is complete, use this section to prepare, launch, and monitor customer outreach in Rally. Choose the workflow that matches your customer source:</p>
           <ul class="chapter-path-list">
-            <li><strong>Private:</strong> for your own uploaded customer list.</li>
-            <li><strong>Shared:</strong> for the Shared pool path.</li>
+            <li><strong>Private:</strong> use your own uploaded customer list.</li>
+            <li><strong>Shared:</strong> use customers already available in the Shared pool.</li>
           </ul>
         </div>
 
-        <p class="launch-intro">Private is shown by default. Select Shared if that matches your Rally role.</p>
+        <div class="loom-placeholder" aria-label="Loom walkthrough placeholder for setting up your study">
+          <div class="loom-placeholder-thumb" aria-hidden="true">
+            <div class="loom-placeholder-play">&#9658;</div>
+          </div>
+          <div class="loom-placeholder-copy">
+            <div class="video-preview-label">Loom walkthrough coming soon</div>
+            <div class="video-preview-title">Setting up your study</div>
+            <div class="video-preview-desc">A short walkthrough will show the main setup screens and where to make required edits.</div>
+          </div>
+        </div>
+
+        <p class="launch-intro">Use the tabs below to view the workflow for your customer source.</p>
 
         <div id="workflow-selector" class="workflow-selector" aria-label="Launch workflow selector">
           <button type="button" class="workflow-tab active" data-workflow-select="private">Private Workflow</button>
