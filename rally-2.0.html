@@ -530,6 +530,35 @@
     font-size: 16px; font-weight: 300; color: var(--text-secondary);
     line-height: 1.55;
   }
+  .role-workflow-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 18px;
+  }
+  .role-workflow-btn {
+    min-height: 42px;
+    padding: 0 18px;
+    border: 1px solid rgba(255,82,0,0.22);
+    border-radius: 8px;
+    background: var(--white);
+    color: var(--orange);
+    font-family: 'Inter Tight', sans-serif;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
+  }
+  .role-workflow-btn:hover {
+    border-color: rgba(255,82,0,0.42);
+    box-shadow: 0 5px 18px rgba(0,0,0,0.07);
+    transform: translateY(-1px);
+  }
+  .role-workflow-btn.primary {
+    background: var(--orange);
+    color: var(--white);
+    border-color: var(--orange);
+  }
 
   .workflow-selector {
     display: inline-flex; gap: 4px; padding: 4px;
@@ -710,6 +739,8 @@
     .panel-inner { padding: 40px 18px 56px; }
     .doc-title { font-size: 28px; }
     .value-grid, .role-choice-grid, .oh-grid { grid-template-columns: 1fr !important; }
+    .role-workflow-actions { flex-direction: column; }
+    .role-workflow-btn { width: 100%; }
     .workflow-selector { display: flex; width: 100%; }
     .workflow-tab { flex: 1; padding: 0 10px; }
     .step-header { padding: 18px; }
@@ -780,16 +811,6 @@
           </div>
         </div>
 
-        <div class="loom-placeholder" aria-label="Loom walkthrough placeholder for choosing your Rally path">
-          <div class="loom-placeholder-thumb" aria-hidden="true">
-            <div class="loom-placeholder-play">&#9658;</div>
-          </div>
-          <div class="loom-placeholder-copy">
-            <div class="video-preview-label">Loom walkthrough coming soon</div>
-            <div class="video-preview-title">Choosing your Rally path</div>
-            <div class="video-preview-desc">A short walkthrough will explain what Rally does and how to choose Private or Shared.</div>
-          </div>
-        </div>
       </div>
 
       <hr class="section-divider">
@@ -827,7 +848,7 @@
 
           <div class="role-path-card shared">
             <div class="role-path-title">Shared</div>
-            <div class="role-path-desc">For Rally users who want to contribute customer lists to a shared Rally pool and use customer lists shared by other PMs.</div>
+            <div class="role-path-desc">For Rally users who want to contribute customer lists to a shared Rally pool and use customer lists shared by other Rally users.</div>
             <div class="role-value">
               <div class="role-value-label">Why use this path</div>
               <div class="role-value-copy">Build a stronger shared customer database. Adding your customer lists improves visibility into outreach, shows which initiatives customers have participated in, and helps teams coordinate better.</div>
@@ -852,6 +873,11 @@
 
         <div style="margin-top:16px;border:1px solid var(--border);border-radius:10px;padding:14px 16px;background:var(--white);">
           <div style="font-size:16px;line-height:1.6;color:var(--text-secondary);"><strong>Note:</strong> You can update your role later in your account settings if you need to work with both Private and Shared customer sources.</div>
+        </div>
+
+        <div class="role-workflow-actions" aria-label="Choose a Rally workflow">
+          <button type="button" class="role-workflow-btn primary" data-role-workflow="private">Use Private Workflow</button>
+          <button type="button" class="role-workflow-btn" data-role-workflow="shared">Use Shared Workflow</button>
         </div>
       </div>
 
@@ -888,7 +914,7 @@
         <div class="step-block">
           <div class="step-header"><div class="step-number">2</div><div><div class="step-title">Prepare Your Customer List, If Needed</div></div></div>
           <div class="step-body">
-            <p>If you are using your own customer list, prepare it with the <strong><a href="https://docs.google.com/spreadsheets/d/1QwcibcmJnZmhJJpFzbvWbD-mEiJuO66aSzgxkc2sZa4/copy" target="_blank">Rally Import List template</a></strong>. If you are using the Shared pool, you can skip this step and add participants from <strong>PM Shared List</strong> after your study is published.</p>
+            <p>If you are using your own customer list, prepare it with the <strong><a href="https://docs.google.com/spreadsheets/d/1QwcibcmJnZmhJJpFzbvWbD-mEiJuO66aSzgxkc2sZa4/copy" target="_blank">Rally Import List template</a></strong>. If you are using the Shared pool, you can skip this step and add participants from <strong>Rally User Shared List</strong> after your study is published.</p>
             <div class="step-action-label">If you need to upload a list</div>
             <ol class="step-instructions">
               <li>Click the template link and create your own copy.</li>
@@ -963,19 +989,8 @@
         <p class="chapter-header-desc">After onboarding is complete, use this section to prepare, launch, and monitor customer outreach in Rally. Choose the workflow that matches your customer source:</p>
         <ul class="chapter-path-list">
           <li><strong>Private:</strong> use your own uploaded customer list.</li>
-          <li><strong>Shared:</strong> use customers already available in the Shared pool.</li>
+          <li><strong>Shared:</strong> contribute customer lists to the Shared pool and use customers shared by other Rally users.</li>
         </ul>
-      </div>
-
-      <div class="loom-placeholder" aria-label="Loom walkthrough placeholder for setting up your study">
-        <div class="loom-placeholder-thumb" aria-hidden="true">
-          <div class="loom-placeholder-play">&#9658;</div>
-        </div>
-        <div class="loom-placeholder-copy">
-          <div class="video-preview-label">Loom walkthrough coming soon</div>
-          <div class="video-preview-title">Setting up your study</div>
-          <div class="video-preview-desc">A short walkthrough will show the main setup screens and where to make required edits.</div>
-        </div>
       </div>
 
       <p class="launch-intro">Use the tabs below to view the workflow for your customer source.</p>
@@ -987,6 +1002,22 @@
 
       <div id="private-workflow" class="workflow-panel active" data-workflow-panel="private">
         <div class="workflow-label">Private List Workflow</div>
+
+        <div class="loom-placeholder" aria-label="Loom walkthrough placeholder for the Private workflow">
+          <div class="loom-placeholder-thumb" aria-hidden="true">
+            <div class="loom-placeholder-play">&#9658;</div>
+          </div>
+          <div class="loom-placeholder-copy">
+            <div class="video-preview-label">Loom walkthrough coming soon</div>
+            <div class="video-preview-title">Private workflow walkthrough</div>
+            <div class="video-preview-desc">A short walkthrough will show how to set up and launch a study using your own customer list.</div>
+          </div>
+        </div>
+
+        <div class="workflow-note">
+          <div class="workflow-note-title">When to use this workflow</div>
+          <p class="workflow-note-text">Use this workflow when you are bringing your own customer list into Rally and want to manage outreach in your own workspace.</p>
+        </div>
 
         <div class="steps-wrapper">
           <div class="step-block">
@@ -1066,9 +1097,21 @@
 
       <div id="shared-workflow" class="workflow-panel" data-workflow-panel="shared">
         <div class="workflow-label">Shared Workflow</div>
+
+        <div class="loom-placeholder" aria-label="Loom walkthrough placeholder for the Shared workflow">
+          <div class="loom-placeholder-thumb" aria-hidden="true">
+            <div class="loom-placeholder-play">&#9658;</div>
+          </div>
+          <div class="loom-placeholder-copy">
+            <div class="video-preview-label">Loom walkthrough coming soon</div>
+            <div class="video-preview-title">Shared workflow walkthrough</div>
+            <div class="video-preview-desc">A short walkthrough will show how to contribute customer lists and use the Shared pool for outreach.</div>
+          </div>
+        </div>
+
         <div class="workflow-note">
           <div class="workflow-note-title">When to use this workflow</div>
-          <p class="workflow-note-text">Use this workflow when you are contacting customers from the Shared pool.</p>
+          <p class="workflow-note-text">Use this workflow when you are contributing customer lists to the Shared pool or contacting customers shared by other Rally users.</p>
         </div>
 
         <div class="steps-wrapper">
@@ -1081,7 +1124,7 @@
                 <li>From the main Dashboard, go to <strong>Your Teams</strong> and select <strong>Shared</strong></li>
                 <li>Click <strong>Studies</strong></li>
                 <li>Click <strong>+ New Study</strong></li>
-                <li>Select <strong>PM Customer Calls (Template)</strong></li>
+                <li>Select <strong>Rally User Customer Calls (Template)</strong></li>
                 <li>Use the template as your starting point and edit only what you need</li>
               </ul>
               <div class="callout tip">
@@ -1129,7 +1172,7 @@
                 <li>Click <strong>Add participants</strong> in the middle of the screen, or click <strong>Add participants</strong> in the top right corner</li>
                 <li>Choose <strong>Find people in Rally</strong></li>
                 <li>Open the population dropdown</li>
-                <li>Select <strong>PM Shared List</strong></li>
+                <li>Select <strong>Rally User Shared List</strong></li>
                 <li>Select the customers you want to add to the study</li>
                 <li>Click <strong>Add selected</strong></li>
                 <li>Confirm the selected customers now appear in your study</li>
@@ -1305,6 +1348,21 @@
       if (control.tagName === 'BUTTON') {
         event.preventDefault();
       }
+    });
+  });
+
+  document.querySelectorAll('[data-role-workflow]').forEach(function(control) {
+    control.addEventListener('click', function(event) {
+      event.preventDefault();
+      var workflow = control.dataset.roleWorkflow;
+      setWorkflow(workflow);
+      showChapter('workflows');
+      setTimeout(function() {
+        var selector = document.getElementById('workflow-selector');
+        if (!selector) return;
+        var navOffset = document.querySelector('.top-nav').offsetHeight + document.querySelector('.tab-bar').offsetHeight + 16;
+        window.scrollTo({ top: Math.max(0, selector.offsetTop - navOffset), behavior: 'smooth' });
+      }, 60);
     });
   });
 
