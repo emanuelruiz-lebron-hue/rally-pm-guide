@@ -1409,6 +1409,11 @@
 
   window.addEventListener('popstate', function() {
     var h = window.location.hash.replace('#', '');
+    if (h === 'shared-workflow' || h === 'private-workflow') {
+      showChapter('workflows');
+      setWorkflow(h.replace('-workflow', ''));
+      return;
+    }
     showChapter(CHAPTERS.includes(h) ? h : 'overview');
   });
 
@@ -1431,6 +1436,7 @@
   document.querySelectorAll('[data-workflow-select]').forEach(function(control) {
     control.addEventListener('click', function(event) {
       setWorkflow(control.dataset.workflowSelect);
+      history.replaceState(null, '', '#' + control.dataset.workflowSelect + '-workflow');
       if (control.tagName === 'BUTTON') {
         event.preventDefault();
       }
@@ -1443,6 +1449,7 @@
       var workflow = control.dataset.roleWorkflow;
       setWorkflow(workflow);
       showChapter('workflows');
+      history.replaceState(null, '', '#' + workflow + '-workflow');
       setTimeout(function() {
         var selector = document.getElementById('workflow-selector');
         if (!selector) return;
@@ -1451,6 +1458,12 @@
       }, 60);
     });
   });
+
+  if (initHash === 'shared-workflow' || initHash === 'private-workflow') {
+    setWorkflow(initHash.replace('-workflow', ''));
+    showChapter('workflows');
+    history.replaceState(null, '', '#' + initHash);
+  }
 
   // ---- VIDEO MODAL ----
   var videoModal = document.getElementById('profile-tools-video-modal');
