@@ -282,6 +282,14 @@
     display: block;
     object-fit: cover;
   }
+  .video-preview-thumb video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+  }
   .video-play-icon {
     width: 46px;
     height: 46px;
@@ -1140,15 +1148,21 @@
       <div id="shared-workflow" class="workflow-panel" data-workflow-panel="shared">
         <div class="workflow-label">Shared Workflow</div>
 
-        <div class="loom-placeholder" aria-label="Loom walkthrough placeholder for the Shared workflow">
-          <div class="loom-placeholder-thumb" aria-hidden="true">
-            <div class="loom-placeholder-play">&#9658;</div>
-          </div>
-          <div class="loom-placeholder-copy">
-            <div class="video-preview-label">Video walkthrough</div>
-            <div class="video-preview-title">Shared workflow walkthrough</div>
-            <div class="video-preview-desc">A short walkthrough will show how to create a Shared study, add customers, and send outreach.</div>
-          </div>
+        <div class="guide-video">
+          <button class="video-preview-button" type="button" data-video-open aria-haspopup="dialog" aria-controls="shared-workflow-video-modal">
+            <span class="video-preview-thumb" aria-hidden="true">
+              <video muted preload="metadata" playsinline>
+                <source src="assets/videos/shared-full-workflow.mp4" type="video/mp4">
+              </video>
+              <span class="video-play-icon">&#9658;</span>
+            </span>
+            <span class="video-preview-copy">
+              <span class="video-preview-label">Video walkthrough</span>
+              <span class="video-preview-title">Shared workflow walkthrough</span>
+              <span class="video-preview-desc">Watch how to create a Shared study, add customers, and send outreach.</span>
+            </span>
+          </button>
+          <p class="guide-video-fallback"><a href="assets/videos/shared-full-workflow.mp4" target="_blank" rel="noopener">Open video in a new tab</a></p>
         </div>
 
         <div class="workflow-note">
@@ -1386,6 +1400,21 @@
   </div>
 </div>
 
+<div class="video-modal" id="shared-workflow-video-modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="shared-workflow-video-title">
+  <div class="video-modal-dialog">
+    <div class="video-modal-header">
+      <div class="video-modal-title" id="shared-workflow-video-title">Shared workflow walkthrough</div>
+      <button class="video-modal-close" type="button" data-video-close aria-label="Close walkthrough video">&times;</button>
+    </div>
+    <div class="video-modal-frame">
+      <video controls preload="metadata" aria-label="Shared workflow walkthrough">
+        <source src="assets/videos/shared-full-workflow.mp4" type="video/mp4">
+        <a href="assets/videos/shared-full-workflow.mp4">Open the Shared workflow walkthrough</a>
+      </video>
+    </div>
+  </div>
+</div>
+
 <script>
   // ---- CHAPTER NAVIGATION ----
   const CHAPTERS = ['overview', 'onboarding', 'workflows', 'help'];
@@ -1475,47 +1504,52 @@
     history.replaceState(null, '', '#' + initHash);
   }
 
-  // ---- VIDEO MODAL ----
-  var videoModal = document.getElementById('profile-tools-video-modal');
-  var videoPlayer = document.getElementById('profile-tools-video-player');
-  var videoOpen = document.querySelector('[data-video-open]');
-  var videoClose = document.querySelector('[data-video-close]');
+  // ---- VIDEO MODALS ----
+  var activeVideoTrigger = null;
 
-  function openVideoModal() {
-    if (!videoModal) return;
-    videoModal.classList.add('open');
-    videoModal.setAttribute('aria-hidden', 'false');
+  function openVideoModal(modal, trigger) {
+    if (!modal) return;
+    activeVideoTrigger = trigger;
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
-    if (videoClose) videoClose.focus();
+    var closeButton = modal.querySelector('[data-video-close]');
+    if (closeButton) closeButton.focus();
   }
 
-  function closeVideoModal() {
-    if (!videoModal) return;
-    videoModal.classList.remove('open');
-    videoModal.setAttribute('aria-hidden', 'true');
+  function closeVideoModal(modal) {
+    if (!modal) return;
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden', 'true');
     document.body.style.overflow = '';
-    if (videoPlayer) videoPlayer.pause();
-    if (videoOpen) videoOpen.focus();
+    var modalVideo = modal.querySelector('video');
+    if (modalVideo) modalVideo.pause();
+    if (activeVideoTrigger) activeVideoTrigger.focus();
+    activeVideoTrigger = null;
   }
 
-  if (videoOpen) {
-    videoOpen.addEventListener('click', openVideoModal);
-  }
-
-  if (videoClose) {
-    videoClose.addEventListener('click', closeVideoModal);
-  }
-
-  if (videoModal) {
-    videoModal.addEventListener('click', function(event) {
-      if (event.target === videoModal) closeVideoModal();
+  document.querySelectorAll('[data-video-open]').forEach(function(trigger) {
+    trigger.addEventListener('click', function() {
+      openVideoModal(document.getElementById(trigger.getAttribute('aria-controls')), trigger);
     });
-  }
+  });
+
+  document.querySelectorAll('[data-video-close]').forEach(function(closeButton) {
+    closeButton.addEventListener('click', function() {
+      closeVideoModal(closeButton.closest('.video-modal'));
+    });
+  });
+
+  document.querySelectorAll('.video-modal').forEach(function(modal) {
+    modal.addEventListener('click', function(event) {
+      if (event.target === modal) closeVideoModal(modal);
+    });
+  });
 
   document.addEventListener('keydown', function(event) {
-    if (event.key === 'Escape' && videoModal && videoModal.classList.contains('open')) {
-      closeVideoModal();
-    }
+    if (event.key !== 'Escape') return;
+    var openModal = document.querySelector('.video-modal.open');
+    if (openModal) closeVideoModal(openModal);
   });
 </script>
 
