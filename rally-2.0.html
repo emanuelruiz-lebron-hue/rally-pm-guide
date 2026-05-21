@@ -591,36 +591,6 @@
     font-size: 16px; font-weight: 300; color: var(--text-secondary);
     line-height: 1.55;
   }
-  .role-workflow-actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 12px;
-    margin-top: 18px;
-  }
-  .role-workflow-btn {
-    min-height: 42px;
-    padding: 0 18px;
-    border: 1px solid rgba(255,82,0,0.22);
-    border-radius: 8px;
-    background: var(--white);
-    color: var(--orange);
-    font-family: 'Inter Tight', sans-serif;
-    font-size: 14px;
-    font-weight: 700;
-    cursor: pointer;
-    transition: border-color 0.2s, box-shadow 0.2s, transform 0.2s;
-  }
-  .role-workflow-btn:hover {
-    border-color: rgba(255,82,0,0.42);
-    box-shadow: 0 5px 18px rgba(0,0,0,0.07);
-    transform: translateY(-1px);
-  }
-  .role-workflow-btn.primary {
-    background: var(--orange);
-    color: var(--white);
-    border-color: var(--orange);
-  }
-
   .workflow-selector {
     display: inline-flex; gap: 4px; padding: 4px;
     background: var(--bg2); border: 1px solid var(--border);
@@ -800,8 +770,6 @@
     .panel-inner { padding: 40px 18px 56px; }
     .doc-title { font-size: 28px; }
     .value-grid, .role-choice-grid, .oh-grid { grid-template-columns: 1fr !important; }
-    .role-workflow-actions { flex-direction: column; }
-    .role-workflow-btn { width: 100%; }
     .workflow-selector { display: flex; width: 100%; }
     .workflow-tab { flex: 1; padding: 0 10px; }
     .step-header { padding: 18px; }
@@ -936,10 +904,6 @@
           <div style="font-size:16px;line-height:1.6;color:var(--text-secondary);"><strong>Note:</strong> You can update your role later in your account settings if you need to work with both Private and Shared customer sources.</div>
         </div>
 
-        <div class="role-workflow-actions" aria-label="Choose a Rally workflow">
-          <button type="button" class="role-workflow-btn primary" data-role-workflow="private">Use Private Workflow</button>
-          <button type="button" class="role-workflow-btn" data-role-workflow="shared">Use Shared Workflow</button>
-        </div>
       </div>
 
       <div class="chapter-end">
@@ -1549,22 +1513,6 @@
       if (control.tagName === 'BUTTON') {
         event.preventDefault();
       }
-    });
-  });
-
-  document.querySelectorAll('[data-role-workflow]').forEach(function(control) {
-    control.addEventListener('click', function(event) {
-      event.preventDefault();
-      var workflow = control.dataset.roleWorkflow;
-      setWorkflow(workflow);
-      showChapter('workflows');
-      history.replaceState(null, '', '#' + workflow + '-workflow');
-      setTimeout(function() {
-        var selector = document.getElementById('workflow-selector');
-        if (!selector) return;
-        var navOffset = document.querySelector('.top-nav').offsetHeight + document.querySelector('.tab-bar').offsetHeight + 16;
-        window.scrollTo({ top: Math.max(0, selector.offsetTop - navOffset), behavior: 'smooth' });
-      }, 60);
     });
   });
 
