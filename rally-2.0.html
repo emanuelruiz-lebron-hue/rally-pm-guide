@@ -226,6 +226,17 @@
   .step-instructions li { font-size: 16px; font-weight: 300; color: var(--text-secondary); line-height: 1.6; }
   .step-instructions li strong { font-weight: 600; color: var(--text); }
   .step-instructions a { color: var(--orange); font-weight: 500; }
+  .template-choice-list {
+    gap: 7px;
+    margin-top: -2px;
+  }
+  .template-choice-list li {
+    font-size: 15px;
+    line-height: 1.5;
+  }
+  .template-choice-list strong {
+    font-weight: 650;
+  }
   .guide-screenshot-caption {
     padding: 8px 12px;
     background: #F5F5F5;
@@ -1071,73 +1082,132 @@
 
         <div class="steps-wrapper">
           <div class="step-block">
-            <div class="step-header"><div class="step-number">1</div><div><div class="step-title">Set up your study for the first time</div><div class="step-subtitle">Rally lets you reuse your customer list by duplicating a previous study, so you don't have to start from scratch each round.</div></div></div>
+            <div class="step-header"><div class="step-number">1</div><div><div class="step-title">Create a study from a template</div><div class="step-subtitle">Use a workspace template to create a new study in your Private workspace.</div></div></div>
             <div class="step-body">
-              <p>Rather than starting from scratch, duplicate a past study to carry your customer list forward.</p>
+              <figure class="step-mini-video">
+                <video autoplay muted loop playsinline preload="metadata" aria-label="Short visual preview of creating a Private study from a template in Rally">
+                  <source src="assets/videos/private-step-1.mp4" type="video/mp4">
+                </video>
+              </figure>
+              <p>Templates give you a starting structure based on the type of outreach or research activity you're running.</p>
               <div class="step-action-label">What to do</div>
-              <ul class="step-instructions">
-                <li>In the left sidebar, click <strong>Studies</strong></li>
-                <li>Check the box next to the study you want to duplicate</li>
-                <li>Click <strong>Duplicate</strong> in the toolbar</li>
-                <li>When the duplicate modal opens, pause before clicking <strong>Duplicate study</strong></li>
+              <ol class="step-instructions">
+                <li>In the left sidebar, go to <strong>Private</strong> and select <strong>Studies</strong>.</li>
+                <li>Click <strong>New Study</strong> at the top right.</li>
+                <li>Choose the workspace template that best matches your study.</li>
+              </ol>
+              <div class="step-action-label">Choose a template</div>
+              <ul class="step-instructions template-choice-list">
+                <li><strong>Customer Call:</strong> Schedule a 1:1 call with a customer.</li>
+                <li><strong>Incentivized Customer Call:</strong> Schedule a customer call and provide an incentive.</li>
+                <li><strong>Unmoderated:</strong> Share a prototype, usability test, or activity customers can complete on their own.</li>
+                <li><strong>Survey: Procore Research Program Invite:</strong> Invite a customer to join the Procore Research Program.</li>
               </ul>
-              <div style="margin-top:16px;border:1px solid rgba(0,0,0,0.08);border-radius:10px;overflow:hidden;">
-                <div class="guide-screenshot-caption">Click Studies, check the box, then click Duplicate</div>
-                <img src="rally-studies.png" alt="Studies list with checkbox and Duplicate button highlighted" style="width:100%;display:block;">
-              </div>
-            </div>
-          </div>
-
-          <div class="step-block critical-step">
-            <div class="step-header"><div class="step-number">!</div><div><div class="step-title">Critical: keep your participants when you duplicate</div><div class="step-subtitle">This is the one duplicate-setting that prevents a full manual re-import.</div></div></div>
-            <div class="step-body">
-              <p>When the duplicate modal opens, always check <strong>"Include participants"</strong> before clicking <strong>Duplicate study</strong>. If you skip this, your customer list will not transfer and you'll have to re-import the entire list manually.</p>
-              <div style="margin-top:16px;border:1px solid rgba(0,0,0,0.08);border-radius:10px;overflow:hidden;">
-                <div class="guide-screenshot-caption">Check Include participants before clicking Duplicate study</div>
-                <img src="rally-duplicate-modal.png" alt="Duplicate study modal with Include participants and Duplicate study button highlighted" style="width:100%;display:block;">
-              </div>
             </div>
           </div>
 
           <div class="step-block">
-            <div class="step-header"><div class="step-number">2</div><div><div class="step-title">Update Your Study</div><div class="step-subtitle">Review and edit your study details before launching.</div></div></div>
+            <div class="step-header"><div class="step-number">2</div><div><div class="step-title">Set Up the Study</div><div class="step-subtitle">Add the customer-facing details and decide whether you need a screener.</div></div></div>
             <div class="step-body">
-              <p>Update the study name, scope, and session details as needed. If you need to add more customers to your list, send the updated list to <strong>Sophia Nitti or Emanuel Ruiz-Lebrón</strong> before you launch.</p>
+              <figure class="step-mini-video">
+                <video autoplay muted loop playsinline preload="metadata" aria-label="Short visual preview of setting up a Private study in Rally">
+                  <source src="assets/videos/shared-step-2.mp4" type="video/mp4">
+                </video>
+              </figure>
+              <p>Add the few details customers will see before they schedule.</p>
               <div class="step-action-label">What to do</div>
               <ul class="step-instructions">
-                <li>Update <strong>study details</strong> as needed (name, session length, dates)</li>
-                <li>Review and update <strong>messages</strong> for this round of outreach</li>
-                <li>To add more customers: send them to <strong>Sophia Nitti or Emanuel Ruiz-Lebrón</strong> and they will add them to your study</li>
+                <li>Add an <strong>External study name</strong>. This is the name customers will see</li>
+                <li>Review the participation limit. It defaults to <strong>20 calls</strong>, but you can adjust it if needed</li>
+                <li><strong>Optional:</strong> Add a screener only if you need to qualify customers or collect context before the call</li>
               </ul>
               <div class="callout tip">
                 <div class="callout-icon">i</div>
                 <div>
-                  <div class="callout-label">Templates are already built for you</div>
-                  <p class="callout-text">Rally ships with prebuilt outreach and reminder templates. You don't need to write messages from scratch. Open the Messages tab inside your study, edit the prefilled copy to match this round's scope, and save.</p>
+                  <div class="callout-label">Keep it simple</div>
+                  <p class="callout-text">If you do not need to qualify customers or collect information before the call, skip the Screener section.</p>
                 </div>
               </div>
             </div>
           </div>
 
           <div class="step-block">
-            <div class="step-header"><div class="step-number">3</div><div><div class="step-title">Launch and Schedule Your Calls</div><div class="step-subtitle">Send outreach to your customer list and schedule calls through Rally.</div></div></div>
+            <div class="step-header"><div class="step-number">3</div><div><div class="step-title">Confirm Scheduling</div><div class="step-subtitle">Review the invite, interviewers, availability, and observer room.</div></div></div>
             <div class="step-body">
-              <p>Once everything is ready, send your outreach and let Rally handle the scheduling. Customers will receive an invitation and can book directly from the link.</p>
+              <figure class="step-mini-video">
+                <video autoplay muted loop playsinline preload="metadata" aria-label="Short visual preview of confirming scheduling for a Private study in Rally">
+                  <source src="assets/videos/shared-step-3.mp4" type="video/mp4">
+                </video>
+              </figure>
+              <p>Confirm the calendar invite and booking times before customers see them.</p>
               <div class="step-action-label">What to do</div>
               <ul class="step-instructions">
-                <li>Review the study one final time: confirm details, messages, and participant list</li>
-                <li>Click <strong>Send Outreach</strong> to launch</li>
-                <li>Monitor responses and bookings in Rally as they come in</li>
+                <li>Review the calendar invite, meeting length, and Zoom location</li>
+                <li>Confirm who will run the interviews and add any teammates, co-interviewers, or guests</li>
+                <li>Review available session times and adjust them if needed</li>
+                <li><strong>Optional:</strong> Leave <strong>Observer Rooms</strong> on if teammates or stakeholders need to observe, or turn them off if they are not needed</li>
               </ul>
-              <div class="callout help">
-                <div class="callout-icon">?</div>
+              <div class="callout warning">
+                <div class="callout-icon">!</div>
                 <div>
-                  <div class="callout-label">Need Help?</div>
-                  <ul class="support-list">
-                    <li><strong>Quick questions:</strong> Post in <a href="https://app.slack.com/client/T024H0HN2/#rally" target="_blank">#rally</a> on Slack.</li>
-                    <li><strong>Rally Office Hours:</strong> Thursdays, 11 AM PDT. Platform questions, troubleshooting, and best practices.</li>
-                    <li><strong>Emanuel's Office Hours:</strong> Mondays &amp; Wednesdays, 12:30 PM PST. List workflow and setup questions.</li>
-                  </ul>
+                  <div class="callout-label">Watch your availability</div>
+                  <p class="callout-text">If customer-call time is blocked on your Google Calendar, Rally may hide it. Manually add or override those times so customers can book them.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="step-block">
+            <div class="step-header"><div class="step-number">4</div><div><div class="step-title">Review Messages</div><div class="step-subtitle">Make sure the outreach and automated messages fit your study.</div></div></div>
+            <div class="step-body">
+              <p>Check the customer-facing emails before publishing.</p>
+              <div class="step-action-label">What to do</div>
+              <ul class="step-instructions">
+                <li>Review the scheduler, confirmation, reminder, cancellation, and reschedule messages</li>
+                <li>Update placeholders and edit the message copy as needed so it matches your study</li>
+                <li>Use the preview to confirm what customers will see</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="step-block">
+            <div class="step-header"><div class="step-number">5</div><div><div class="step-title">Publish the Study</div><div class="step-subtitle">Use Rally's final review to catch anything missing before the study goes live.</div></div></div>
+            <div class="step-body">
+              <p>Use Rally's Review page as your final check.</p>
+              <div class="step-action-label">What to do</div>
+              <ul class="step-instructions">
+                <li>Skip the Share section unless you need it</li>
+                <li>Review the final setup page</li>
+                <li>Fix anything Rally flags as missing or needing attention</li>
+                <li>When there are no issues, click <strong>Publish Study</strong></li>
+              </ul>
+              <div class="callout warning">
+                <div class="callout-icon">!</div>
+                <div>
+                  <div class="callout-label">Before you publish</div>
+                  <p class="callout-text">Wait until Rally shows no setup issues. After publishing, the study is live, but customers have not been added yet.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="step-block">
+            <div class="step-header"><div class="step-number">6</div><div><div class="step-title">Add and Contact Customers</div><div class="step-subtitle">Add customers from your private list and send the right outreach email.</div></div></div>
+            <div class="step-body">
+              <p>Add customers from your private list, then send the right message.</p>
+              <div class="step-action-label">What to do</div>
+              <ul class="step-instructions">
+                <li>Click <strong>Add participants</strong>, then choose <strong>Find people in Rally</strong></li>
+                <li>Select the private list for this study</li>
+                <li>Choose specific customers, apply filters, or select a random sample</li>
+                <li>Click <strong>Compose email</strong> and choose the right message</li>
+                <li>Review the email, then send it to the selected customers</li>
+              </ul>
+              <div class="callout tip">
+                <div class="callout-icon">i</div>
+                <div>
+                  <div class="callout-label">Which email should I send?</div>
+                  <p class="callout-text"><strong>Screener</strong> = ask questions before scheduling<br><strong>Scheduler</strong> = let customers book time<br><strong>Custom email</strong> = send a one-off message</p>
                 </div>
               </div>
             </div>
@@ -1209,7 +1279,7 @@
               <div class="step-action-label">What to do</div>
               <ul class="step-instructions">
                 <li>Add an <strong>External study name</strong>. This is the name customers will see</li>
-                <li>Review the participation limit. PM studies default to <strong>20 calls</strong>, but you can adjust it if needed</li>
+                <li>Review the participation limit. It defaults to <strong>20 calls</strong>, but you can adjust it if needed</li>
                 <li><strong>Optional:</strong> Add a screener only if you need to qualify customers or collect context before the call</li>
               </ul>
               <div class="callout tip">
