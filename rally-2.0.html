@@ -538,8 +538,49 @@
   .support-list li { font-size: 16px; font-weight: 300; line-height: 1.6; color: var(--text-secondary); }
 
   .role-selection-helper {
-    font-size: 16px; font-weight: 500; color: var(--text-secondary);
+    font-size: 16px; font-weight: 300; color: var(--text-secondary);
     line-height: 1.65; margin: -10px 0 18px;
+  }
+  .role-selection-helper p {
+    margin: 0 0 8px;
+  }
+  .role-selection-helper ul {
+    margin: 0;
+    padding-left: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .role-selection-helper li {
+    font-size: 16px;
+    font-weight: 300;
+    color: var(--text-secondary);
+    line-height: 1.55;
+  }
+  .role-selection-helper strong {
+    color: var(--text);
+    font-weight: 700;
+  }
+  .role-note-card {
+    margin-top: 16px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 14px 16px;
+    background: var(--white);
+    font-size: 16px;
+    line-height: 1.6;
+    color: var(--text-secondary);
+  }
+  .role-note-card p {
+    margin: 0;
+  }
+  .role-note-card strong {
+    color: var(--text);
+    font-weight: 700;
+  }
+  .role-note-card a {
+    color: var(--orange);
+    font-weight: 500;
   }
   .role-path-card {
     border: 1px solid var(--border); border-top-width: 4px; border-radius: 12px; padding: 22px 24px;
@@ -859,15 +900,21 @@
         <div class="section-anchor-label">Getting Started</div>
         <h2 class="section-heading">Your Role and Permissions</h2>
         <p class="section-subheading">There are two ways to work in Rally. Choose the path that matches how you want to source customers for your calls.</p>
-        <p class="role-selection-helper">Both paths help you centralize outreach, scheduling, reminders, and tracking. The main difference is whether you bring your own customer list or use customers already available in Rally.</p>
+        <div class="role-selection-helper">
+          <p>Both paths help you manage outreach, scheduling, reminders, and tracking in Rally.</p>
+          <ul>
+            <li><strong>Private:</strong> Use this when you are working from your own customer list.</li>
+            <li><strong>Shared:</strong> Use this when you are contributing customers to the shared Rally pool and need to coordinate outreach across shared lists.</li>
+          </ul>
+        </div>
 
         <div class="role-choice-grid" style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:20px;">
           <div class="role-path-card private">
             <div class="role-path-title">Private</div>
-            <div class="role-path-desc">For Rally users who already have a specific customer list and want to manage outreach in their own Rally workspace.</div>
+            <div class="role-path-desc">For Rally users who want to manage outreach from their own customer list.</div>
             <div class="role-value">
               <div class="role-value-label">Why use this path</div>
-              <div class="role-value-copy">Bring your customer list into Rally so the calls, reminders, scheduling, and response tracking happen in one place.</div>
+              <div class="role-value-copy">Keep calls, reminders, scheduling, and response tracking in one place without mixing your list with shared customer lists.</div>
             </div>
             <div class="role-permission-label">Permissions</div>
             <div class="role-permission-list">
@@ -888,10 +935,10 @@
 
           <div class="role-path-card shared">
             <div class="role-path-title">Shared</div>
-            <div class="role-path-desc">For Rally users who want to contribute customer lists to a shared Rally pool and use customer lists shared by other Rally users.</div>
+            <div class="role-path-desc">For Rally users who are contributing customers to the shared Rally pool.</div>
             <div class="role-value">
               <div class="role-value-label">Why use this path</div>
-              <div class="role-value-copy">Build a stronger shared customer database. Adding your customer lists improves visibility into outreach, shows which initiatives customers have participated in, and helps teams coordinate better.</div>
+              <div class="role-value-copy">Help teams build a stronger shared customer database, coordinate outreach, and see which initiatives customers have already participated in.</div>
             </div>
             <div class="role-permission-label">Permissions</div>
             <div class="role-permission-list">
@@ -911,10 +958,16 @@
           </div>
         </div>
 
-        <div style="margin-top:16px;border:1px solid var(--border);border-radius:10px;padding:14px 16px;background:var(--white);">
-          <div style="font-size:16px;line-height:1.6;color:var(--text-secondary);"><strong>Note:</strong> You can update your role later in your account settings if you need to work with both Private and Shared customer sources.</div>
+        <div class="role-note-card">
+          <p><strong>Note:</strong> You can update your role later in your account settings if you need to work with both Private and Shared customer sources.</p>
         </div>
 
+      </div>
+
+      <div class="content-section">
+        <div class="section-anchor-label">Program Access</div>
+        <h2 class="section-heading">Procore Research Program Access</h2>
+        <p class="section-subheading">The Procore Research Program is separate from Private and Shared lists. Participants join through the Procore website at <a href="https://www.procore.com/research" target="_blank">procore.com/research</a>, agree to program terms, and usually receive an incentive for participating in research. For best practices on working with Procore Research Program participants, review the Procore Research Program guidelines.</p>
       </div>
 
       <div class="chapter-end">
@@ -948,10 +1001,10 @@
         </div>
 
         <div class="step-block">
-          <div class="step-header"><div class="step-number">2</div><div><div class="step-title">Prepare Your Customer List, If Needed</div></div></div>
+          <div class="step-header"><div class="step-number">2</div><div><div class="step-title">Prepare Your List</div></div></div>
           <div class="step-body">
-            <p>If you are using your own customer list, prepare it with the <strong><a href="https://docs.google.com/spreadsheets/d/1QwcibcmJnZmhJJpFzbvWbD-mEiJuO66aSzgxkc2sZa4/copy" target="_blank">Rally Import List template</a></strong>. If you are using the Shared pool, you can skip this step and add participants from <strong>Rally User Shared List</strong> after your study is published.</p>
-            <div class="step-action-label">If you need to upload a list</div>
+            <p>Prepare your customer list with the <strong><a href="https://docs.google.com/spreadsheets/d/1QwcibcmJnZmhJJpFzbvWbD-mEiJuO66aSzgxkc2sZa4/copy" target="_blank">Rally Import List template</a></strong>. Use the same template whether your list is for Private outreach or the Shared Rally pool. Product Operations will upload the list and follow up in Slack with next steps.</p>
+            <div class="step-action-label">To prepare your list</div>
             <ol class="step-instructions">
               <li>Click the template link and create your own copy.</li>
               <li>Add your customers and include the required details, including Account ID.</li>
