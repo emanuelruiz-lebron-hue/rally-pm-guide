@@ -1170,15 +1170,21 @@
       <div id="private-workflow" class="workflow-panel active" data-workflow-panel="private">
         <div class="workflow-label">Private List Workflow</div>
 
-        <div class="loom-placeholder" aria-label="Loom walkthrough placeholder for the Private workflow">
-          <div class="loom-placeholder-thumb" aria-hidden="true">
-            <div class="loom-placeholder-play">&#9658;</div>
-          </div>
-          <div class="loom-placeholder-copy">
-            <div class="video-preview-label">Video walkthrough</div>
-            <div class="video-preview-title">Private workflow walkthrough</div>
-            <div class="video-preview-desc">A short walkthrough will show how to set up and launch a study using your own customer list.</div>
-          </div>
+        <div class="guide-video">
+          <button class="video-preview-button" type="button" data-video-open aria-haspopup="dialog" aria-controls="private-workflow-video-modal">
+            <span class="video-preview-thumb" aria-hidden="true">
+              <video muted preload="metadata" playsinline>
+                <source src="assets/videos/private-full-workflow.mp4" type="video/mp4">
+              </video>
+              <span class="video-play-icon">&#9658;</span>
+            </span>
+            <span class="video-preview-copy">
+              <span class="video-preview-label">Video walkthrough</span>
+              <span class="video-preview-title">Private workflow walkthrough</span>
+              <span class="video-preview-desc">Watch how to set up and launch a study using your own customer list.</span>
+            </span>
+          </button>
+          <p class="guide-video-fallback"><a href="assets/videos/private-full-workflow.mp4" target="_blank" rel="noopener">Open video in a new tab</a></p>
         </div>
 
         <div class="workflow-note">
@@ -1578,6 +1584,21 @@
       <video id="profile-tools-video-player" controls preload="metadata" poster="assets/videos/rally-profile-tools-setup-poster.png" aria-label="Rally profile and connected tools setup walkthrough">
         <source src="assets/videos/rally-profile-tools-setup.mp4" type="video/mp4">
         <a href="assets/videos/rally-profile-tools-setup.mp4">Open the Rally profile and connected tools setup walkthrough</a>
+      </video>
+    </div>
+  </div>
+</div>
+
+<div class="video-modal" id="private-workflow-video-modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="private-workflow-video-title">
+  <div class="video-modal-dialog">
+    <div class="video-modal-header">
+      <div class="video-modal-title" id="private-workflow-video-title">Private workflow walkthrough</div>
+      <button class="video-modal-close" type="button" data-video-close aria-label="Close walkthrough video">&times;</button>
+    </div>
+    <div class="video-modal-frame">
+      <video controls preload="metadata" aria-label="Private workflow walkthrough">
+        <source src="assets/videos/private-full-workflow.mp4" type="video/mp4">
+        <a href="assets/videos/private-full-workflow.mp4">Open the Private workflow walkthrough</a>
       </video>
     </div>
   </div>
