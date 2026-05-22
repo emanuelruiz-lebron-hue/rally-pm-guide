@@ -672,12 +672,68 @@
   }
   .help-card-title { font-size: 16px; font-weight: 700; color: var(--text); margin-bottom: 6px; }
   .help-card-desc { font-size: 16px; font-weight: 300; color: var(--text-light); line-height: 1.55; }
+  .support-routing-note {
+    font-size: 15px;
+    font-weight: 300;
+    color: var(--text-secondary);
+    line-height: 1.55;
+    margin: 0 0 28px;
+    padding-left: 12px;
+    border-left: 3px solid var(--orange);
+  }
+  .support-routing-note strong {
+    color: var(--text);
+    font-weight: 700;
+  }
+  .support-routing-note a,
+  .support-routing-table a {
+    color: inherit;
+    text-decoration: none;
+  }
+  .support-routing-note a:hover,
+  .support-routing-table a:hover {
+    color: var(--orange);
+    text-decoration: underline;
+  }
+  .support-routing-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 0 36px;
+    font-size: 16px;
+    line-height: 1.55;
+  }
+  .support-routing-table th {
+    padding: 0 0 9px;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-light);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-align: left;
+    text-transform: uppercase;
+  }
+  .support-routing-table td {
+    padding: 13px 18px 13px 0;
+    border-bottom: 1px solid var(--border);
+    color: var(--text-secondary);
+    font-weight: 300;
+    vertical-align: top;
+  }
+  .support-routing-table td:last-child {
+    padding-right: 0;
+    width: 34%;
+  }
+  .support-routing-table strong {
+    color: var(--text);
+    font-weight: 700;
+  }
 
   .oh-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 24px; }
   .oh-card { background: var(--bg); border: 1px solid var(--border); border-radius: 12px; padding: 22px 24px; }
   .oh-card-title { font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 9px; }
   .oh-card-meta { font-size: 16px; font-weight: 300; color: var(--text-secondary); line-height: 1.65; margin-bottom: 14px; }
   .oh-card-meta strong { font-weight: 600; color: var(--text); }
+  .oh-time { display: block; white-space: nowrap; font-size: 15px; }
   .oh-link { font-size: 13px; font-weight: 700; color: var(--orange); text-decoration: none; display: inline-flex; align-items: center; gap: 5px; }
 
   .workflow-label {
@@ -811,6 +867,28 @@
     .panel-inner { padding: 40px 18px 56px; }
     .doc-title { font-size: 28px; }
     .value-grid, .role-choice-grid, .oh-grid { grid-template-columns: 1fr !important; }
+    .support-routing-table,
+    .support-routing-table thead,
+    .support-routing-table tbody,
+    .support-routing-table tr,
+    .support-routing-table th,
+    .support-routing-table td {
+      display: block;
+      width: 100%;
+    }
+    .support-routing-table thead { display: none; }
+    .support-routing-table tr {
+      padding: 11px 0;
+      border-bottom: 1px solid var(--border);
+    }
+    .support-routing-table td {
+      padding: 0;
+      border-bottom: 0;
+    }
+    .support-routing-table td:last-child {
+      width: 100%;
+      margin-top: 4px;
+    }
     .workflow-selector { display: flex; width: 100%; }
     .workflow-tab { flex: 1; padding: 0 10px; }
     .step-header { padding: 18px; }
@@ -1423,34 +1501,41 @@
       <div class="content-section">
         <div class="section-anchor-label">Resources</div>
         <h2 class="section-heading">Help Center</h2>
-        <p class="section-subheading">Three ways to get help. Pick whichever fits your situation.</p>
+        <p class="section-subheading">Use the right support channel based on what you need.</p>
 
-        <div class="help-grid">
-          <a href="https://app.rallyuxr.com/auth/workspaces" class="help-card" target="_blank">
-            <div class="help-card-icon">R</div>
-            <div class="help-card-title">Open Rally</div>
-            <div class="help-card-desc">Manage your outreach, scheduling, and customer calls.</div>
-          </a>
-          <a href="#" class="help-card" target="_blank">
-            <div class="help-card-icon">?</div>
-            <div class="help-card-title">Rally Help Center</div>
-            <div class="help-card-desc">Guides, help articles, and platform documentation.</div>
-          </a>
-          <a href="https://app.slack.com/client/T024H0HN2/#rally" class="help-card" target="_blank">
-            <div class="help-card-icon">#</div>
-            <div class="help-card-title">#rally on Slack</div>
-            <div class="help-card-desc">Quick questions, updates, and support from the team.</div>
-          </a>
-        </div>
+        <p class="support-routing-note">If you are blocked from launching outreach, post in <strong><a href="https://procore.enterprise.slack.com/archives/C08QNK2PABW" target="_blank">#rally</a></strong> with your study name, customer source, and the step where you are blocked.</p>
+
+        <table class="support-routing-table">
+          <thead>
+            <tr>
+              <th scope="col">If you need...</th>
+              <th scope="col">Go here</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>A quick Rally question or help with a blocked study</td>
+              <td><strong><a href="https://procore.enterprise.slack.com/archives/C08QNK2PABW" target="_blank">#rally Slack channel</a></strong></td>
+            </tr>
+            <tr>
+              <td>Troubleshooting, workflow questions, or Rally best practices</td>
+              <td><strong>Rally Office Hours</strong></td>
+            </tr>
+            <tr>
+              <td>List setup, study setup, or Procore-specific guidance</td>
+              <td><strong>Emanuel's Office Hours</strong></td>
+            </tr>
+          </tbody>
+        </table>
 
         <h3 style="font-size:18px;font-weight:700;color:var(--text);margin-bottom:16px;letter-spacing:-0.01em;">Office Hours</h3>
         <div class="oh-grid">
           <div class="oh-card">
             <div class="oh-card-title">Rally Office Hours</div>
             <div class="oh-card-meta">
-              Platform questions, troubleshooting, and best practices.<br><br>
+              Platform questions, troubleshooting, and Rally best practices.<br><br>
               <strong>Day:</strong> Thursdays<br>
-              <strong>Time:</strong> 11:00 AM PDT &nbsp;|&nbsp; 1:00 PM CDT &nbsp;|&nbsp; 2:00 PM EDT
+              <span class="oh-time"><strong>Time:</strong> 11:00 AM PT &nbsp;|&nbsp; 1:00 PM CT &nbsp;|&nbsp; 2:00 PM ET</span>
             </div>
             <a href="https://procore.zoom.us/j/94393456026?pwd=ef6pljJdK3ZFxMgoqV201DCUrEJm7h.1&amp;jst=2" class="oh-link" target="_blank">Join Zoom</a>
           </div>
@@ -1458,8 +1543,8 @@
             <div class="oh-card-title">Emanuel's Office Hours</div>
             <div class="oh-card-meta">
               List workflow, setup questions, and general guidance.<br><br>
-              <strong>Days:</strong> Every Monday &amp; Wednesday<br>
-              <strong>Time:</strong> 12:30 PM PST &nbsp;|&nbsp; 2:30 PM CST &nbsp;|&nbsp; 3:30 PM EST
+              <strong>Days:</strong> Mondays and Wednesdays<br>
+              <span class="oh-time"><strong>Time:</strong> 12:30 PM PT &nbsp;|&nbsp; 2:30 PM CT &nbsp;|&nbsp; 3:30 PM ET</span>
             </div>
             <a href="https://procore.zoom.us/j/94502403365?pwd=2bkncx2SFVR7Ja9qbdhDrOSEEu793C.1" class="oh-link" target="_blank">Join Zoom</a>
           </div>
