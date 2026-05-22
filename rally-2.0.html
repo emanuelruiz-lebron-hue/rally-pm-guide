@@ -1595,6 +1595,13 @@
     modal.classList.add('open');
     modal.setAttribute('aria-hidden', 'false');
     document.body.style.overflow = 'hidden';
+    var modalVideo = modal.querySelector('video');
+    if (modalVideo) {
+      var playRequest = modalVideo.play();
+      if (playRequest && typeof playRequest.catch === 'function') {
+        playRequest.catch(function() {});
+      }
+    }
     var closeButton = modal.querySelector('[data-video-close]');
     if (closeButton) closeButton.focus();
   }
